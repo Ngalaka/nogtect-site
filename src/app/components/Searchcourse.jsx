@@ -1,157 +1,207 @@
-"use client"
-import React from 'react'
-import { useForm } from 'react-hook-form';
-import { CiSearch } from 'react-icons/ci';
+"use client";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { CiSearch } from "react-icons/ci";
 
 export default function Searchcourse() {
 
-// Array of dropdown items
-  const guidances = [
-    "Programme guidance",
-    "Fees and payment plans",
-    "Class dates and times",
-    "Campus visit",
-    "Application support",
-    "Other enquiry",
+  // 
+  // Array of dropdown items
+  const pathways = [
+    "All pathways ",
+    "Business & Productivity",
+    "cloud & DevOps",
+    "Cybersecurity",
+    "Creative & Media",
+    "Data Science & Analytics",
+    "Digital Marketing",
+    "Engineering & CAD",
+    "Networking & Hardware",
+    "Project Management",
+    "Software Development",
+    "UI/UX & Product Design",
   ];
 
   // Array of dropdown items
-  const courses = [
-    "Full Stack Web Development",
-    "UI/UX Design",
-    "Python Programming",
-    "AI Automation",
-    "Data Analytics",
-    "Digital Marketing",
+  const experiences = [
+    "All experiences levels",
+    "Beginner-friendly",
+    "Some experience",
+    "Experienced learner",
   ];
 
-
-  const campuses = [
-    "Port Harcourt",
-    "Abia State",
-    "Imo State",
-    "Online",
-    "Not sure yet",
+  const formats = [
+    "All",
+    "Physical class",
+    "Online Virtual",
+    "Both Physical & Online",
   ];
-     const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        reset,
-        //  getValues, // for checking password and confirm password
-      } = useForm();
 
-      const onSubmit = async (data) => {
-          try {
-            setLoading(true);
-      
-            const payload = {
-              firstname: data.firstname,
-              lastname: data.lastname,
-              email: data.email,
-              mobile: data.mobile,
-              campus: data.campus,
-              course: data.course,
-              guidance: data.guidance,
-              messages: data.messages,
-              emailRole: "myself",
-            };
-            console.log("Payload:", payload);
-            const res = await axios.post("/api/email", payload);
-      
-            console.log("Status:", res.status);
-            console.log("Response:", res.data);
-      
-            if (res.data.success || res.status == 200) {
-              router.push("/");
-              reset();
-            }
-          } catch (error) {
-            console.error(error.response?.data || error.message);
-          } finally {
-            setLoading(false);
-          }
-        };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+    //  getValues, // for checking password and confirm password
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
+
+      const payload = {
+        firstname: data.firstname,
+        lastname: data.lastname,
+        email: data.email,
+        mobile: data.mobile,
+        campus: data.campus,
+        course: data.course,
+        guidance: data.guidance,
+        messages: data.messages,
+        emailRole: "myself",
+      };
+      console.log("Payload:", payload);
+      const res = await axios.post("/api/email", payload);
+
+      console.log("Status:", res.status);
+      console.log("Response:", res.data);
+
+      if (res.data.success || res.status == 200) {
+        router.push("/");
+        reset();
+      }
+    } catch (error) {
+      console.error(error.response?.data || error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <>
-    <div className = "w-full h-auto bg-blue-800 py-2">
+    <div>
+      {/* Search Form */}
+      <div className="w-full h-auto bg-blue-800 py-2">
+        <form action="" onSubmit={handleSubmit(onSubmit)}>
+          <div className="w-[98%] h-auto py-2 mx-auto bg-blue-950 flex justify-between items-baseline gap-4">
+            <div className="flex justify-center items-center gap-2">
+              <span>
+                <CiSearch />
+              </span>
+              <input
+                type="text"
+                {...register("search", {
+                  required: "Please enter a search term",
+              
+                })}
+                 placeholder="Please enter a search term"
+                className="w-[400px] h-auto outline-none py-4  bg-blue-950 text-white  font-bold border-2 px-2 rounded-lg  focus:border-blue-500
+                placeholder:text-xl placeholder:font-bold placeholder:text-white/40 placeholder:opacity-80focus:outline-none hover:outline-1 hover:border-2 hover:border-white/50"
+              />
 
-              <form action="" onSubmit={handleSubmit(onSubmit)}>
-                 <div className = "w-[98%] h-auto py-2 mx-auto bg-blue-950 flex justify-between items-baseline gap-4">
-
-            <div className ="flex justify-center items-center gap-2">
-                <space><CiSearch /></space>
-                <input text="text" placeholder="Search courses..."  className="w-[300px] h-auto outline-none py-2  bg-blue-950 text-white font-bold border-2 px-2 hover:outline-1 hover:border-2 hover:border-white/50"></input>
+              {errors.search && (
+                <p className="text-red-500 text-sm">{errors.search.message}</p>
+              )}
             </div>
 
             <div>
               <div>
-                    <space></space> 
-                    <space></space>
+                <span></span>
+                <span></span>
               </div>
-               
-               <select
-                {...register("coursesearch", {
-                  required: "Please select a campus city",
+              <select
+                id="pathway"
+                {...register("pathway", {
+                  required: "Please Select-One a pathway",
                 })}
-               className="w-[300px] h-auto outline-none py-4  bg-blue-950 text-white font-bold border-2 px-2 hover:outline-1 hover:border-2 hover:border-white/50"
+                className="w-[240px] h-auto outline-none py-4  bg-blue-950 text-white font-bold border-2 px-2 rounded-lg  focus:border-blue-500
+                focus:outline-none hover:outline-1 hover:border-2 hover:border-white/50"
               >
-                <option value="">Choose a Preferred city</option>
+                <option value="">All pathways</option>
 
-                {campuses.map((campus, index) => (
+                {pathways.map((path, index) => (
                   <option
                     key={index}
-                    value={campus}
+                    value={path}
                     className=" block mb-2 font-bold text-white"
                   >
-                    {campus}
+                    {path}
                   </option>
                 ))}
               </select>
 
-              {errors.coursesearch && (
-                <p className="text-red-600">{errors.coursesearch.message}</p>
+              {errors.pathway && (
+                <p className="text-red-500 text-sm">{errors.pathway.message}</p>
               )}
-
             </div>
 
-
-            <div  className ="flex justify-center items-center gap-2">
-                <space></space>
-                  <select
-                id="course"
-                {...register("course", {
-                  required: "Please select a course",
+            <div className="flex justify-center items-center gap-2">
+              <span></span>
+              <select
+                id="experience"
+                {...register("experience", {
+                  required: "Please select a experience",
                 })}
-                className="w-[300px] h-auto outline-none py-2  bg-blue-950 text-white font-bold border-2 px-2 hover:outline-1 hover:border-2 hover:border-white/50"
+                className="w-[240px] h-auto outline-none py-4  bg-blue-950 text-white font-bold border-2 px-2 rounded-lg  focus:border-blue-500
+    focus:outline-none hover:outline-1 hover:border-2 hover:border-white/50"
               >
-                <option value="">Not yet sure </option>
+                <option value="">All experiences levels</option>
 
-                {courses.map((course, index) => (
+                {experiences.map((experience, index) => (
                   <option
                     key={index}
-                    value={course}
+                    value={experience}
                     className=" block mb-2 font-bold text-white"
                   >
-                    {course}
+                    {experience}
                   </option>
                 ))}
               </select>
 
-              {errors.course && (
-                <p className="text-red-500 text-sm">{errors.course.message}</p>
+              {errors.experience && (
+                <p className="text-red-500 text-sm">
+                  {errors.experience.message}
+                </p>
               )}
             </div>
 
             <div>
-            
-            </div>
-        </div>
-              </form>
+              <span></span>
+              <select
+                id="format"
+                {...register("format", {
+                  required: "Please select a format",
+                })}
+                className="w-[240px] h-auto outline-none py-4  bg-blue-950 text-white font-bold border-2 px-2 rounded-lg  focus:border-blue-500
+               focus:outline-none hover:outline-1 hover:border-2 hover:border-white/50"
+              >
+                <option value="">Physical class</option>
 
-           
-    </div>
+                {formats.map((format, index) => (
+                  <option
+                    key={index}
+                    value={format}
+                    className=" block mb-2 font-bold text-white"
+                  >
+                    {format}
+                  </option>
+                ))}
+              </select>
+
+              {errors.format && (
+                <p className="text-red-500 text-sm">{errors.format.message}</p>
+              )}
+            </div>
+          </div>
+        </form>
+      </div>
+
+
+
+      {/* course cards */}
         
+
+    </div>
+      
     </>
-  )
+  );
 }
