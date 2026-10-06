@@ -453,15 +453,39 @@ export default function Searchcourse() {
         <div>
           <h2>38 programmes found</h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                      {programmes.map((programme) => (
                     <div key={programme.id} className="bg-white rounded-lg shadow-md overflow-hidden">
                           <div>
                             <Image src = {programme.image}  width={300} height={300} alt={programme.title} 
                             className="w-full h-[200px] object-cover" />
                           </div>
-                        <div>
-                          <span>{programme.program}</span>
+
+                        <div className="py-4 px-6">
+                          <span>{programme.name}</span>
+                          <p>{programme.program}</p>
+                           <p>{programme.description}</p>
+
+                           <div className="flex justify-stretch items-center gap-4">
+                            <div className="flex justify-between items-center gap-4">
+                              <span>{programme.icon}</span>
+                              <span className="text-sm">{programme.duration}</span>
+                            </div>
+
+                            <div>
+                              <span className="text-sm">{programme.format}</span>
+                            </div>
+                           </div>
+
+                            <div className="flex justify-between items-center gap-4 py-2">
+                                  <span>{programme.price}</span>
+
+                                  <div className="flex justify-between items-center gap-2">
+                                    <span>{programme.view}</span>
+                                    <span>{programme.icon2}</span>
+                                  </div>
+                               </div>
+
                         </div>
                     </div>
                      ))}
