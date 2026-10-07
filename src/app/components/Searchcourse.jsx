@@ -338,7 +338,7 @@ export default function Searchcourse() {
   };
   return (
     <>
-      <div>
+      <div className="w-full h-auto" id="search-course">
         {/* Search Form */}
         <div className="w-full h-auto bg-blue-800 py-2 ">
           <form action="" onSubmit={handleSubmit(onSubmit)}>
