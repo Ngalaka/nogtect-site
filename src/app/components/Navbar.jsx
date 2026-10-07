@@ -25,7 +25,7 @@ export default function Navbar() {
           <div className="flex justify-center items-center gap-2 transition duration-300 ease-in-out hover:text-blue-900">
             <Link
               href="/"
-              className="text-black text-xl font-semibold transition duration-300 ease-in-out hover:text-blue-900"
+              className="text-black text-sm font-semibold transition duration-300 ease-in-out hover:text-blue-900"
             >
               Home
             </Link>
@@ -34,16 +34,16 @@ export default function Navbar() {
           <div className="flex justify-center items-center gap-2 transition duration-300 ease-in-out hover:text-blue-900">
             <Link
               href="/courses"
-              className="text-black text-xl font-semibold transition duration-300 ease-in-out hover:text-blue-900"
+              className="text-black text-sm font-semibold transition duration-300 ease-in-out hover:text-blue-900"
             >
               Courses
             </Link>
           </div>
 
-          <div className="flex justify-center items-center gap-2 transition duration-300 ease-in-out hover:text-blue-900">
+          <div className="flex justify-center  items-center gap-2 transition duration-300 ease-in-out hover:text-blue-900">
             <Link
               href="/about"
-              className="text-black text-xl font-semibold transition duration-300 ease-in-out hover:text-blue-900"
+              className="text-black text-sm font-semibold transition duration-300 ease-in-out hover:text-blue-900"
             >
               About Us
             </Link>
@@ -52,7 +52,7 @@ export default function Navbar() {
           <div className="flex justify-center items-center gap-2 transition duration-300 ease-in-out hover:text-blue-900">
             <Link
               href="/testimonial"
-              className="text-black text-xl font-semibold transition duration-300 ease-in-out hover:text-blue-900"
+              className="text-black text-sm font-semibold transition duration-300 ease-in-out hover:text-blue-900"
             >
               Testimonial
             </Link>
@@ -61,7 +61,7 @@ export default function Navbar() {
           <div className="flex justify-center items-center gap-2 transition duration-300 ease-in-out hover:text-blue-900">
             <Link
               href="/contact"
-              className="text-black text-xl font-semibold transition duration-300 ease-in-out hover:text-blue-900"
+              className="text-black text-sm font-semibold transition duration-300 ease-in-out hover:text-blue-900"
             >
               Contact Us
             </Link>
@@ -71,10 +71,10 @@ export default function Navbar() {
         {/* light mode and drak mode */}
 
         <div className="flex justify-between items-center gap-2">
-          <button className="w-34 py-2 bg-blue-900 text-white font-bold cursor-pointer rounded-lg">
+          <button className="w-34 py-2 bg-blue-900 text-sm text-white font-bold cursor-pointer rounded-lg">
             <Link href="/contact">Register</Link>
           </button>
-          <button className="w-34 py-2 bg-orange-600 text-white font-bold cursor-pointer rounded-lg">
+          <button className="w-34 py-2 bg-orange-600 text-sm text-white font-bold cursor-pointer rounded-lg">
             <Link href="/contact">Enquire Now</Link>
           </button>
         </div>
