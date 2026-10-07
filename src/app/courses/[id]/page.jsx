@@ -26,7 +26,7 @@ export default async function ProgrammeDetails({ params }) {
         <div className=" py-4 px-4 ">
 
         <Link href="/courses" className='className="text-white text-sm py-8 px-4 font-bold text-white'>
-             ← All properties
+             ← All courses
         </Link>
         
         </div>

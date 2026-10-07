@@ -74,7 +74,7 @@ export default function Navbar() {
           <button className="w-34 py-2 bg-blue-900 text-sm text-white font-bold cursor-pointer rounded-lg">
             <Link href="/contact">Register</Link>
           </button>
-          <button className="w-34 py-2 bg-orange-600 text-sm text-white font-bold cursor-pointer rounded-lg">
+          <button className="w-34 py-2  bg-red-800 text-sm text-white font-bold cursor-pointer rounded-lg">
             <Link href="/contact">Enquire Now</Link>
           </button>
         </div>

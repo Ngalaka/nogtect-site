@@ -9,6 +9,7 @@ import { LuUser } from "react-icons/lu";
 import { RiOrganizationChart } from "react-icons/ri";
 import Email from "../components/Email";
 import Message from "../components/Message";
+import Campus from "../components/Campus";
 
 export default function Page() {
   const [emailRole, setEmailRole] = useState("myselfRole");
@@ -225,6 +226,10 @@ export default function Page() {
         
             </div>
           </div>
+        </div>
+
+        <div>
+            <Campus/>
         </div>
       </div>
     </>
