@@ -72,11 +72,14 @@ export default async function ProgrammeDetails({ params }) {
                     {programme.enroll}
                     <span><IoArrowForward /></span>
                     </button>
-                 
-                <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text-white font-bold border border-white rounded-lg'>
-                    <span><CgShapeHexagon /></span>
+
+                    <Link href="/courses">
+              <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text-white font-bold border border-white rounded-lg'>
+                  <span><CgShapeHexagon /></span>
                     {programme.askques}
-                    </button>
+              </button>
+            </Link>
+                
           
                 <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text-white font-bold  rounded-lg'>
                     <span><MdOutlineFileDownload /></span>

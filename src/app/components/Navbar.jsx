@@ -68,6 +68,8 @@ export default function Navbar() {
           </div>
         </nav>
 
+        
+
         {/* light mode and drak mode */}
 
         <div className="flex justify-between items-center gap-2">
