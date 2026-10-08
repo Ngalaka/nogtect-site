@@ -6,6 +6,10 @@ import { TbMoneybagPlus } from "react-icons/tb";
 import { CiBezier } from "react-icons/ci";
 import { LiaPeopleCarrySolid } from "react-icons/lia";
 import { FaPeopleRoof } from "react-icons/fa6";
+import { SiMaterialdesign } from 'react-icons/si';
+import { GiHumanTarget } from 'react-icons/gi';
+import { MdOutlineShoppingBag } from 'react-icons/md';
+import { LuAward } from 'react-icons/lu';
 
 export default function About() {
   return (
@@ -139,7 +143,96 @@ export default function About() {
                      to give you access to high quality engineers from under-represented backgrounds.</p>
                 </div>
             </div>
+
+         
       </div>
+
+   {/*  */}
+      <div className='w-full h-auto bg-blue-50'>
+
+                <div className='w-[80%] h-auto mx-auto flex justify-between items-center gap-4 py-8'>
+                    <div className='w-[50%] h-auto space-y-4'>
+                        <h1 className='text-xl font-bold text-red-800 border-l-4 border-red-900 px-4'>About Nogtech</h1>
+                        <p className='text-4xl font-semibold text-black'>Where technology learning meets real-world practice</p>
+                        <p className='text-black/70 font-normal'>NOGTECH empowers learners to build practical, career-ready skills through expert instruction, hands-on projects, and structured support.</p>
+                    </div>
+
+                    <div>
+                        <Image src ="/techsch.jpg" width={300} height={300} alt='Nogtech' className='w-150 h-100'/>
+                    </div>
+                </div>
+
+            </div>
+
+            {/*  */}
+
+            <div className='w-full h-auto bg-white py-12'>
+
+                <div className='w-[80%] h-auto flex justify-between items-center gap-4 mx-auto px-4'>
+                    <div className='w-[50%] space-y-4'>
+                        <h1 className='text-sm font-bold text-red-800 border-l-4 border-red-900 px-4'>Shorter version</h1>
+                        <p className='text-4xl font-normal text-blue-950'>Technology is best learned through practical experience.</p>
+                    </div>
+
+                    <div className='w-[50%] h-auto px-4 text-sm text-black/50'>
+                        <p>Our physical classrooms and online learning environment are designed
+                             to move learners beyond passive theory. Every learning pathway combines
+                             expert instruction, guided practice, feedback, and hands-on projects 
+                             that make progress visible.</p>
+
+                        <p className='py-4'> Whether you learn with us in person or online, whether you are starting 
+                            from scratch, switching careers, or strengthening your existing role, the goal remains the same:
+                             to develop practical skills you can confidently explain,
+                              apply, and demonstrate in the real world.</p>
+                    </div>
+                </div>
+            </div>
+
+
+             <div className='w-full h-auto bg-white py-12'>
+
+                <div className='w-[80%] h-auto flex justify-between items-center gap-4 mx-auto px-4'>
+                    <div className='w-[50%] space-y-4'>
+                        <h1 className='text-sm font-bold text-red-800 border-l-4 border-red-900 px-4'>What shapes the experience</h1>
+                        <p className='text-4xl font-normal text-blue-950'>Learn with Purpose. Build with Confidence.</p>
+                    </div>
+
+                    <div className='w-[50%] h-auto px-4 text-sm text-black/50'>
+                        <p>Our learning approach combines technical skills with practical experience, 
+                            confidence, professionalism, and opportunities to apply what you learn in the real world.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div className='w-full h-auto bg-white py-12'>
+
+                <div className='w-[90%] h-auto flex justify-stretch items-center mx-auto px-4'>
+                        <div className=' w-[40%] h-[150px] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.5)] space-y-4 px-4 py-2 border-l border-black/70'>
+                            <span className='py-4 text-xl font-bold text-green-600'><SiMaterialdesign /></span>
+                            <p className='py-2 text-xl font-extralight'>Practical by design</p>
+                            <p className='text-sm text-black/60 '>Lessons turn quickly into labs, exercises, and work learners can show.</p>
+                        </div>
+                            
+                        <div className=' w-[40%] h-[150px] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.5)] space-y-4 px-4 py-2 border-l border-black/70'>
+                            <span className='py-4 text-xl font-bold text-green-600'><GiHumanTarget /></span>
+                            <p className='py-2 text-xl font-extralight'>Human support</p>
+                            <p className='text-sm text-black/60 '>Instructors and peers make difficult concepts easier to navigate.</p>
+                        </div>
+
+                        <div className=' w-[40%] h-[150px] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.5)] space-y-4 px-4 py-2 border-l border-black/70'>
+                            <span className='py-4 text-xl font-bold text-green-600'><MdOutlineShoppingBag /></span>
+                            <p className='py-2 text-xl font-extralight'>Career relevance</p>
+                            <p className='text-sm text-black/60 '>Programmes focus on workflows, tools, and outcomes used beyond the classroom.</p>
+                        </div>
+
+                        <div className=' w-[40%] h-[150px] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.5)] space-y-4 px-4 py-2 border-l border-black/70'>
+                            <span className='py-4 text-xl font-bold text-green-600'><LuAward /></span>
+                            <p className='py-2 text-xl font-extralight'>Visible progress</p>
+                            <p className='text-sm text-black/60 '>Projects, assessments, attendance, and certificates create a clear learning record.</p>
+                        </div>
+                </div>
+
+            </div>
     </>
   )
 }

@@ -336,7 +336,7 @@ export default function Message() {
             <button
               type="submit"
               disabled={loading}
-              className={`w-full h-auto p-2 flex justify-center items-center gap-4 lg:p-2 rounded-lg text-white lg:w-[400px] font-extrabold ${loading ? "bg-gray-300 cursor-not-allowed" : " bg-orange-600 hover:bg-blue-700"}`}
+              className={`w-full h-auto p-2 flex justify-center items-center gap-4 lg:p-2 rounded-lg text-white lg:w-[400px] font-extrabold ${loading ? "bg-gray-300 cursor-not-allowed" : " bg-red-800 hover:bg-blue-700"}`}
             >
               {loading ? "Sending..." : "Send enquiry"}
               <span>

@@ -631,7 +631,7 @@ export default function Hero() {
                     <p className='text-white/60 text-xl'>Specialized expertise for your developers, plus the broader skills your whole org needs. One platform,
                      so you close skill gaps across the entire team instead of one corner of it.</p>
 
-                       <button className='flex justify-center items-center gap-4 font-bold text-xl rounded-2xl cursor-pointer bg-orange-600 text-white py-4 px-2'>
+                       <button className='flex justify-center items-center gap-4 font-bold text-xl rounded-2xl cursor-pointer bg-red-800 text-white py-4 px-2'>
                         Learn more about our skills
                         <span className='block font-bold text-2xl'><IoIosArrowRoundForward /></span>
                        </button>
