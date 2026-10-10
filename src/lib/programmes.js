@@ -5,11 +5,9 @@ export const programmes = [
     program: "Advanced Microsoft Excel",
     description: "Advance your Excel skills for reporting, formulas, pivot tables, dashboards, automation, and business analysis.",
     duration: "12 weeks",
-    // icon: CiClock1,
     format: "Physical / Online virtual",
     price: "₦86,000",
     image: "/advanexcel.jpg",
-    // icon2: IoArrowForward,
     view: "View programme",
     mode: "Beginner-friendly",
     type:  "Format",
@@ -30,11 +28,9 @@ export const programmes = [
     program: "Data Science Course",
     description: "Automate repetitive work and business processes with generative AI, workflow platforms, APIs, agents, and responsible human oversight.",
     duration: "16 weeks",
-    // icon: CiClock1,
     format: "Physical / Online virtual",
     price: "₦430,000",
     image: "/datasci.jpg",
-    // icon2: IoArrowForward,
      mode: "Beginner-friendly",
     type:  "Format",
     time: "Duration",
@@ -44,6 +40,9 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+    details: "Produce better workplace reports",
+    details1: "Analyze data more confidently",
+    details2: "Improve office productivity and employability"
   },
 
   {
@@ -52,11 +51,9 @@ export const programmes = [
     program: "UI/UX & Product Design",
     description: "Learn user research, wireframing, prototyping, usability testing, and portfolio-ready product design with Figma.",
     duration: "12 weeks",
-    // icon: CiClock1,
     format: "Physical / Online virtual",
     price: "₦161,250",
     image: "/uiux.jpg",
-    // icon2: IoArrowForward,
      mode: "Beginner-friendly",
     type:  "Format",
     time: "Duration",
@@ -66,6 +63,9 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+    details:"Create professional visual assets",
+    details1:"Build a design portfolio",
+    details2:"Prepare for freelance and creative support roles"
   },
 
   {
@@ -74,11 +74,9 @@ export const programmes = [
     program: "Web Development with PHP & MySQL",
     description: "Learn dynamic website development with PHP, MySQL, forms, authentication, CRUD operations, and deployment basics.",
     duration: "16 weeks",
-    // icon: CiClock1,
     format: "Physical / Online virtual",
     price: "₦430,000",
     image: "/php.jpg",
-    // icon2: IoArrowForward,
     mode: "Beginner-friendly",
     type:  "Format",
     time: "Duration",
@@ -88,6 +86,9 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+    details:"Build portfolio-ready web applications",
+    details1:"Understand full-stack product workflows",
+    details2:"Prepare for junior web developer or freelance roles",
   },
 
   {
@@ -96,11 +97,9 @@ export const programmes = [
     program: "Videography",
     description: "Learn camera movement, lighting, sound, storytelling, editing, and practical video production for brands and events.",
     duration: "8 weeks",
-    // icon: CiClock1,
     format: "On-campus / Hybrid",
     price: "₦215,000",
     image: "/multi.jpg",
-    // icon2: IoArrowForward,
     view: "View programme",
     title: "programms",
     mode: "Beginner-friendly",
@@ -110,6 +109,9 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+    details:"Shoot stronger photos confidently",
+    details1:"Edit and deliver client-ready images",
+    details2:"Build a starter photography portfolio"
   },
 
   {
@@ -118,11 +120,9 @@ export const programmes = [
     program: "Social Media Marketing",
     description: "Plan, create, publish, and measure social media campaigns for brands, SMEs, creators, and community growth.",
     duration: "8 weeks",
-    // icon: CiClock1,
     format: "Online / Physical",
     price: "₦64,500",
     image: "/digitalmark.jpg",
-    // icon2: IoArrowForward,
     view: "View programme",
     title: "programms",
     mode: "Beginner-friendly",
@@ -132,6 +132,9 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+    details:"Write stronger marketing content",
+    details1:"Support brand communication",
+    details2:"Offer copywriting services to businesses",
   },
 
   {
@@ -139,12 +142,10 @@ export const programmes = [
     name: "Software Development",
     program: "Python Programming",
     description: "Learn Python from the ground up with scripts, functions, files, APIs, data handling, testing, and practical projects.",
-    // icon: CiClock1,
     duration: "12 weeks",
     format: "Physical / Online virtual",
     price: "₦215,000",
     image: "/pythons.jpg",
-    // icon2: IoArrowForward,
      mode: "Beginner-friendly",
     type:  "Format",
     time: "Duration",
@@ -154,6 +155,9 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+     details:"Build portfolio-ready web applications",
+    details1:"Understand full-stack product workflows",
+    details2:"Prepare for junior web developer or freelance roles",
 
   },
 
@@ -163,12 +167,10 @@ export const programmes = [
     program: "Certified Ethical Hacker (CEH)",
     description:
       "Prepare for ethical hacking and security testing with practical labs, attack-and-defence concepts, and CEH-aligned instruction.",
-    // icon: CiClock1,
     duration: "16 weeks",
     format: "Physical / Online virtual",
     price: "₦1,290,000",
     image: "/cybersecurity.jpg",
-    // icon2: IoArrowForward,
      mode: "Beginner-friendly",
     type:  "Format",
     time: "Duration",
@@ -178,6 +180,9 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+    details:"Understand ethical hacking methodology",
+    details1: "Practice security testing in guided labs",
+    details2: "Prepare for cybersecurity and CEH certification pathways"
   },
 
   {
@@ -186,12 +191,10 @@ export const programmes = [
     program: "Content & Copywriting",
     description:
       "Learn persuasive writing for websites, social media, email, ads, and business communication.",
-    // icon: CiClock1,
     duration: "8 weeks",
     format: "Online / Physical",
     price: "₦107,500",
     image: "/contentcreat.jpg",
-    // icon2: IoArrowForward,
      mode: "Beginner-friendly",
     type:  "Format",
     time: "Duration",
@@ -201,6 +204,9 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+     details:"Write stronger marketing content",
+    details1:"Support brand communication",
+    details2:"Offer copywriting services to businesses",
   },
 
   {
@@ -209,12 +215,10 @@ export const programmes = [
     program: "Data Analysis with Excel",
     description:
       "Learn Excel formulas, data cleaning, pivot tables, charts, dashboards, and practical reporting for business decisions.",
-    // icon: CiClock1,
     duration: "12 weeks",
     format: "Online / Physical",
     price: "₦161,250",
     image: "/dataxcel.jpg",
-    // icon2: IoArrowForward,
      mode: "Beginner-friendly",
     type:  "Format",
     time: "Duration",
@@ -235,13 +239,11 @@ export const programmes = [
     name: "Data Science & Analytics",
     program: "Data Analysis with Power BI",
     description:
-      "Turn raw data into clear dashboards, models, and business insights using Microsoft Power BI..",
-    // icon: CiClock1,
+      "Turn raw data into clear dashboards, models, and business insights using Microsoft Power BI.",
     duration: "8 weeks",
     format: "Online / Physical",
     price: "₦215,000",
     image: "/powerbi.jpg",
-    // icon2: IoArrowForward,
      mode: "Beginner-friendly",
     type:  "Format",
     time: "Duration",
@@ -263,7 +265,6 @@ export const programmes = [
     program: "Full-Stack Web Development with Next.js",
     description:
       "Build modern full-stack web applications with HTML, CSS, JavaScript, React, Next.js, Node.js, databases, authentication, testing, and deployment.",
-    // icon: CiClock1,
     duration: "16 weeks",
     format: "Online / Physical",
     price: "₦430,000",
@@ -278,6 +279,9 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+     details:"Build portfolio-ready web applications",
+    details1:"Understand full-stack product workflows",
+    details2:"Prepare for junior web developer or freelance roles",
   },
 
   {
@@ -285,12 +289,10 @@ export const programmes = [
     name: "Software Development",
     program: "Full-Stack Web Development with Django",
     description: "Create secure full-stack applications with Python, Django, REST APIs, React, databases, authentication, and deployment.",
-    // icon: CiClock1,
     duration: "16 weeks",
     format: "Online / Physical",
     price: "₦430,000",
     image: "/django.jpg",
-    // icon2: IoArrowForward,
      mode: "Beginner-friendly",
     type:  "Format",
     time: "Duration",
@@ -300,6 +302,9 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+     details:"Build portfolio-ready web applications",
+    details1:"Understand full-stack product workflows",
+    details2:"Prepare for junior web developer or freelance roles",
   },
 
   {
@@ -307,12 +312,10 @@ export const programmes = [
     name: "UI/UX & Product Design",
     program: "Graphics Design",
     description: "Learn visual communication, branding, typography, layout, and digital design with practical portfolio projects.",
-    // icon: CiClock1,
     duration: "12 weeks",
     format: "Online / Physical",
     price: "₦161,250",
     image: "/graphic.jpg",
-    // icon2: IoArrowForward,
      mode: "Beginner-friendly",
     type:  "Format",
     time: "Duration",
@@ -322,6 +325,9 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+    details:"Create professional visual assets",
+    details1:"Build a design portfolio",
+    details2:"Prepare for freelance and creative support roles"
   },
 
   {
@@ -329,12 +335,10 @@ export const programmes = [
     name: "Business & Productivity",
     program: "Microsoft Office Specialist",
     description: "Build practical Word, Excel, PowerPoint, and productivity skills for office work and MOS certification readiness..",
-    // icon: CiClock1,
     duration: "8 weeks",
     format: "Online / Physical",
     price: "₦107,500",
     image: "/office.jpg",
-    // icon2: IoArrowForward,
      mode: "Beginner-friendly",
     type:  "Format",
     time: "Duration",
@@ -368,5 +372,8 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+    details:"Design reliable AI-assisted business workflows",
+    details1:"Connect approved applications through APIs and automation platforms",
+    details2: "Evaluate, monitor, and govern production automations"
   },
 ];

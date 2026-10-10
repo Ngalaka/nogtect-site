@@ -344,9 +344,7 @@ export default function Searchcourse() {
           <form action="" onSubmit={handleSubmit(onSubmit)}>
             <div className="w-[90%] h-auto py-2 mx-auto  flex justify-between items-center gap-4">
               <div className="flex justify-center items-center gap-2 px-8">
-                {/* <span className="text-2xl text-white font-bold">
-                <CiSearch />
-              </span> */}
+               
                 <input
                   type="text"
                   {...register("search", {

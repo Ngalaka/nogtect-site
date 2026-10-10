@@ -182,7 +182,7 @@ export default async function ProgrammeDetails({ params }) {
 
                   <div className='space-y-4 w-60 h-aut0 mx-auto'>
                   <Link href="/application">
-                  <button className='flex justify-center items-center gap-4 py-2 px-2 w-60 h-auto  bg-red-800  cursor-pointer text-white font-bold border border-white rounded-lg'>
+                  <button className="flex justify-center items-center gap-4 py-2 px-2 w-60 h-auto bg-red-800 cursor-pointer text-white font-bold border border-white rounded-lg shadow-[0_0_20px_6px_rgba(153,27,27,0.6)] hover:shadow-[0_0_30px_10px_rgba(153,27,27,0.8)] transition-all duration-300">
                   <span><CgShapeHexagon /></span>
                     {programme.enroll}
                    </button>
