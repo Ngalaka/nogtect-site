@@ -5,7 +5,7 @@ import React from 'react'
 import { CgShapeHexagon } from 'react-icons/cg';
 import { GiGraduateCap } from 'react-icons/gi';
 import { IoArrowForward, IoLocation, IoTimeOutline } from 'react-icons/io5';
-import CurriculumForm from './CurriculumForm';
+// import CurriculumForm from './CurriculumForm';
 
 export default async function ProgrammeDetails({ params }) {
      const { id } = await params; // we need to get the value of the query params from the url
@@ -119,10 +119,10 @@ export default async function ProgrammeDetails({ params }) {
           Send email about {programme.name}.
         </p>
 
-        <CurriculumForm
+        {/* <CurriculumForm
           courseId={programme.id}
           courseName={programme.name}
-        />
+        /> */}
          
 
     </div>

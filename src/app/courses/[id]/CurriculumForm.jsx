@@ -287,6 +287,8 @@ export default function CurriculumForm({ courseId, courseName }) {
           </div>
         </div>
       </div>
+
+      {/*  */}
     </>
   );
 }
