@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React from 'react'
 import { CgShapeHexagon } from 'react-icons/cg';
 import { GiGraduateCap } from 'react-icons/gi';
+import { IoMdCheckmark } from 'react-icons/io';
 import { IoArrowForward, IoLocation, IoTimeOutline } from 'react-icons/io5';
 // import CurriculumForm from './CurriculumForm';
 
@@ -23,7 +24,7 @@ export default async function ProgrammeDetails({ params }) {
   }
   return (
     <>
-    <div className='w-full h-auto bg-white'>
+    <div className='w-full h-auto bg-blue-950'>
 
         <div className=" py-4 px-4 ">
 
@@ -36,54 +37,55 @@ export default async function ProgrammeDetails({ params }) {
             <div className='w-[90%] h-auto mx-auto flex justify-between items-center gap-4'>
 
             <div className='w-[50%] h-auto space-y-4'>
-            <h1 className="text-sm font-bold mt-6 border-l-4 border-red-800 px-4 text-black">
+            <h1 className="text-sm font-bold mt-6 border-l-4 border-red-800 px-4 text-white">
             {programme.name}
           </h1>
 
-          <p className='font-semibold text-4xl text-black'>{programme.program}</p>
-          <p className='text-black/60 font-normal text-xl'>{programme.description}</p>
+          <p className='font-semibold text-4xl text-white'>{programme.program}</p>
+          <p className='text-white/60 font-normal text-xl'>{programme.description}</p>
 
           <div className='flex justify-between items-center gap-4 py-4'>
             <div className='flex justify-between items-center gap-4'>
                 <span className='text-2xl font-bold text-green-700'><IoTimeOutline /></span>
                 <div>
-                    <p className=' text-sm text-black font-semibold'>{programme.duration}</p>
-                    <p className='text-sm text-black/60 font-normal'>{programme.time}</p>
+                    <p className=' text-sm text-white font-semibold'>{programme.duration}</p>
+                    <p className='text-sm text-white/60 font-normal'>{programme.time}</p>
                 </div>
                 
             </div>
             <div className='flex justify-between items-center gap-4'>
                 <span className='text-2xl font-bold text-green-700'><GiGraduateCap /></span>
                  <div>
-                    <p className=' text-sm  text-black font-semibold'>{programme.mode}</p>
-                    <p className='text-sm text-black/60 font-normal'>{programme.aid}</p>
+                    <p className=' text-sm  text-white font-semibold'>{programme.mode}</p>
+                    <p className='text-sm text-white/60 font-normal'>{programme.aid}</p>
                  </div>
             </div>
             <div className='flex justify-between items-center gap-4'>
                 <span className='text-2xl font-bold text-green-700'><IoLocation /></span>
                 <div>
-                    <p className=' text-sm  text-black font-semibold'>{programme.format}</p>
-                    <p className='text-sm text-black/60 font-normal'>{programme.type}</p>
+                    <p className=' text-sm  text-white font-semibold'>{programme.format}</p>
+                    <p className='text-sm text-white/60 font-normal'>{programme.type}</p>
                 </div>
             </div>
           </div>
           
           <div className='flex justify-between items-center gap-4 px-4'>
-
-                <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer text-sm bg-orange-600 text-white font-bold rounded-lg'>
+                   <Link href="/application">
+                <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer text-sm bg-red-800 text-white font-bold rounded-lg'>
                     {programme.enroll}
                     <span><IoArrowForward /></span>
                     </button>
+                    </Link>
 
                   
-                  <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text- font-bold border border-black rounded-lg'>
+                  <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text-white font-bold border border-white rounded-lg'>
                   <span><CgShapeHexagon /></span>
                     {programme.askques}
               </button>
           
                 
                 <Link href={`/courses/${programme.id}/curri`}>
-                  <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text-black font-bold border border-black rounded-lg'>
+                  <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text-white font-bold border border-white rounded-lg'>
                   <span><CgShapeHexagon /></span>
                     {programme.curri}
               </button>
@@ -118,13 +120,78 @@ export default async function ProgrammeDetails({ params }) {
         <p className="mb-6 text-gray-600">
           Send email about {programme.name}.
         </p>
-
         {/* <CurriculumForm
           courseId={programme.id}
           courseName={programme.name}
-        /> */}
-         
+        /> */}     
+    </div>
 
+    <div className='w-full h-auto bg-blue-100 py-12'>
+            <div className='w-[90%] h-auto flex justify-between items-center gap-4 mx-auto '>
+                  <div className=' w-[60%] h-auto space-y-4'>
+                        <h1 className='text-orange-800 font-bold'>What you will learn</h1>
+                        <p className='w-159 text-3xl font-semibold text-blue-950'>Flexible Learning, Practical Skills, Real Opportunities</p>
+
+                        <div className='grid grid-cols-2 gap-4'>
+                              <div className='flex justify-center items-center gap-4 px-4 py-4 border border-black/10 '>
+                                <span><IoMdCheckmark /></span>
+                                <p>{programme.details}</p>
+                              </div>
+
+                              <div className='flex justify-center items-center gap-4 px-4 py-4 border border-black/10 '>
+                                <span><IoMdCheckmark /></span>
+                                <p>{programme.details1}</p>
+                              </div>
+
+                              <div className='flex justify-center items-center gap-4 px-4 py-4 border border-black/10 '>
+                                <span><IoMdCheckmark /></span>
+                                <p>{programme.details2}</p>
+                              </div>
+                        </div>
+                  </div>
+
+                  <div className='w-[30%] h-auto bg-white py-4  border-t-4 border-red-800 space-y-4'>
+                        <h1 className='font-extrabold text-xl text-red-800 px-4 py-4'>Your seat includes</h1>
+
+                        <div  className='flex justify-start items-center gap-4 px-4 py-2'>
+                          <span><IoMdCheckmark /></span> 
+                          <p className='text-black/40 font-bold'>Live instructor-led classes</p>
+                        </div>
+
+                        <div  className='flex justify-start items-center gap-4 px-4 py-2'>
+                          <span><IoMdCheckmark /></span> 
+                          <p className='text-black/40 font-bold'>Practical labs and projects</p>
+                        </div>
+
+                        <div  className='flex justify-start items-center gap-4 px-4 py-2'>
+                          <span><IoMdCheckmark /></span> 
+                          <p className='text-black/40 font-bold'>Course materials</p>
+                        </div>
+
+                        <div  className='flex justify-start items-center gap-4 px-4 py-2'>
+                          <span><IoMdCheckmark /></span> 
+                          <p className='text-black/40 font-bold'>Portfolio and career support</p>
+                        </div>
+
+                         <div  className='flex justify-start items-center gap-4 px-4'>
+                          <span><IoMdCheckmark /></span> 
+                          <p>Verifiable certificate</p>
+                        </div>
+
+                   
+
+                  <div className='space-y-4 w-60 h-aut0 mx-auto'>
+                  <Link href="/application">
+                  <button className='flex justify-center items-center gap-4 py-2 px-2 w-60 h-auto  bg-red-800  cursor-pointer text-white font-bold border border-white rounded-lg'>
+                  <span><CgShapeHexagon /></span>
+                    {programme.enroll}
+                   </button>
+                      </Link> 
+                        </div>
+
+                  </div>
+
+            </div>
     </div>
     </>
   )

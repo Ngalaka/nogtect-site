@@ -18,6 +18,7 @@ export default  async function CurriculumPage({ params }) {
      <CurriculumForm
       courseId={programme.id}
       courseName={programme.name}
+      courseTitle={programme.program}
     />
         </div>
     </>

@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaRegEnvelope } from "react-icons/fa6";
 import React from "react";
-export default function CurriculumForm({ courseId, courseName }) {
+export default function CurriculumForm({ courseId, courseName, courseTitle }) {
   // Track whether the form is being submitted.
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -74,7 +74,7 @@ export default function CurriculumForm({ courseId, courseName }) {
               Free programme guide
             </h1>
             <p className="w-150 h-auto font-bold text-4xl">
-              Receive the <span className="text-red-800">{courseName}</span>{" "}
+              Receive the <span className="text-red-800">{courseTitle}</span>{" "}
               curriculum
             </p>
             <p className="w-150 h-auto text-xl text-black/60">
@@ -85,8 +85,8 @@ export default function CurriculumForm({ courseId, courseName }) {
           </div>
 
            {/* Show the selected course */}
-            <div className="rounded-lg bg-gray-100 p-4 text-gray-900">
-              <p className="text-sm text-gray-600">Programme selected <span className="font-semibold">{courseName}</span></p>
+            <div className="rounded-lg bg-white p-4 text-gray-900">
+              <p className="text-xl text-blue-900 font-bold  bg-white ">Programme selected <span className="text-xl text-blue-900 font-bold ">{courseName}</span></p>
             </div>
 
           <div className="w-full h-auto flex justify-between items-center gap-4">
@@ -123,9 +123,8 @@ export default function CurriculumForm({ courseId, courseName }) {
                 onSubmit={handleSubmit(onSubmit)}
                 className="space-y-5"
               >
-                <p className="text-center text-xl text-red-800">
-                  {" "}
-                  I am requesting for Curriculum for this Programme
+                <p className="text-center">
+                  I am requesting for Curriculum for this <span className="font-bold text-blue-900">{courseTitle}</span> 
                 </p>
                 <div className="flex justify-stretch items-center gap-4">
                   <div className="">
@@ -234,8 +233,10 @@ export default function CurriculumForm({ courseId, courseName }) {
                           "Your question must contain at least 10 characters",
                       },
                     })}
-                    className="w-full rounded-lg border px-4 py-3 outline-none focus:border-blue-500"
+                   className="w-[500px] h-auto py-2 px-2 outline-none border border-black/30 rounded-lg  bg-white dark:bg-gray-900 dark:text-white text-gray-900 placeholder:text-gray-400  dark:placeholder:text-gray-500 transition-all
+                                duration-200 ease-in-out hover:border-black/50 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                   />
+                
 
                   {errors.question && (
                     <p className="mt-1 text-sm text-red-600">

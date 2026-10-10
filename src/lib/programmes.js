@@ -16,6 +16,13 @@ export const programmes = [
     time: "Duration",
     aid:"Learning support",
     title: "programms",
+     enroll: "Enroll for this course",
+    askques: "Ask Admissions",
+    curri: "Download curriculum",
+    details: "Produce better workplace reports",
+    details1: "Analyze data more confidently",
+    details2: "Improve office productivity and employability"
+
   },
   {
     id: 2,
@@ -217,6 +224,10 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+    details: "Produce better workplace reports",
+    details1: "Analyze data more confidently",
+    details2: "Improve office productivity and employability"
+
   },
 
   {
@@ -240,6 +251,10 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+    details: "Produce better workplace reports",
+    details1: "Analyze data more confidently",
+    details2: "Improve office productivity and employability"
+
   },
 
   {
@@ -329,6 +344,10 @@ export const programmes = [
     enroll: "Enroll for this course",
     askques: "Ask Admissions",
     curri: "Download curriculum",
+    details: "Produce better workplace reports",
+    details1: "Analyze data more confidently",
+    details2: "Improve office productivity and employability"
+
   },
 
   {
