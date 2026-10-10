@@ -5,12 +5,14 @@ import React from 'react'
 import { CgShapeHexagon } from 'react-icons/cg';
 import { GiGraduateCap } from 'react-icons/gi';
 import { IoArrowForward, IoLocation, IoTimeOutline } from 'react-icons/io5';
-import { MdOutlineFileDownload } from 'react-icons/md';
+import CurriculumForm from './CurriculumForm';
 
 export default async function ProgrammeDetails({ params }) {
      const { id } = await params; // we need to get the value of the query params from the url
 
-      const programme = programmes.find( (p) => p.id === Number(id) );
+      const courseId = Number(id);
+      
+      const programme = programmes.find( (p) => p.id === courseId );
 
       if (!programme) {
     return (
@@ -21,7 +23,7 @@ export default async function ProgrammeDetails({ params }) {
   }
   return (
     <>
-    <div className='w-full h-auto bg-blue-950'>
+    <div className='w-full h-auto bg-white'>
 
         <div className=" py-4 px-4 ">
 
@@ -34,34 +36,34 @@ export default async function ProgrammeDetails({ params }) {
             <div className='w-[90%] h-auto mx-auto flex justify-between items-center gap-4'>
 
             <div className='w-[50%] h-auto space-y-4'>
-            <h1 className="text-sm font-bold mt-6 border-l-4 border-red-800 px-4 text-white">
+            <h1 className="text-sm font-bold mt-6 border-l-4 border-red-800 px-4 text-black">
             {programme.name}
           </h1>
 
-          <p className='font-semibold text-4xl text-white'>{programme.program}</p>
-          <p className='text-white/60 font-normal text-xl'>{programme.description}</p>
+          <p className='font-semibold text-4xl text-black'>{programme.program}</p>
+          <p className='text-black/60 font-normal text-xl'>{programme.description}</p>
 
           <div className='flex justify-between items-center gap-4 py-4'>
             <div className='flex justify-between items-center gap-4'>
                 <span className='text-2xl font-bold text-green-700'><IoTimeOutline /></span>
                 <div>
-                    <p className=' text-sm text-white font-semibold'>{programme.duration}</p>
-                    <p className='text-sm text-white/60 font-normal'>{programme.time}</p>
+                    <p className=' text-sm text-black font-semibold'>{programme.duration}</p>
+                    <p className='text-sm text-black/60 font-normal'>{programme.time}</p>
                 </div>
                 
             </div>
             <div className='flex justify-between items-center gap-4'>
                 <span className='text-2xl font-bold text-green-700'><GiGraduateCap /></span>
                  <div>
-                    <p className=' text-sm text-white font-semibold'>{programme.mode}</p>
-                    <p className='text-sm text-white/60 font-normal'>{programme.aid}</p>
+                    <p className=' text-sm  text-black font-semibold'>{programme.mode}</p>
+                    <p className='text-sm text-black/60 font-normal'>{programme.aid}</p>
                  </div>
             </div>
             <div className='flex justify-between items-center gap-4'>
                 <span className='text-2xl font-bold text-green-700'><IoLocation /></span>
                 <div>
-                    <p className=' text-sm text-white font-semibold'>{programme.format}</p>
-                    <p className='text-sm text-white/60 font-normal'>{programme.type}</p>
+                    <p className=' text-sm  text-black font-semibold'>{programme.format}</p>
+                    <p className='text-sm text-black/60 font-normal'>{programme.type}</p>
                 </div>
             </div>
           </div>
@@ -74,18 +76,18 @@ export default async function ProgrammeDetails({ params }) {
                     </button>
 
                   
-                  <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text-white font-bold border border-white rounded-lg'>
+                  <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text- font-bold border border-black rounded-lg'>
                   <span><CgShapeHexagon /></span>
                     {programme.askques}
               </button>
           
                 
-                <Link href={`/courses/${programme.id}/curriculum`}>
-                  <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text-white font-bold border border-white rounded-lg'>
+                <Link href={`/courses/${programme.id}/curri`}>
+                  <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text-black font-bold border border-black rounded-lg'>
                   <span><CgShapeHexagon /></span>
                     {programme.curri}
               </button>
-            </Link>
+            </Link> 
               
           </div>
         </div>
@@ -113,7 +115,14 @@ export default async function ProgrammeDetails({ params }) {
 
             </div>
 
-        
+        <p className="mb-6 text-gray-600">
+          Send email about {programme.name}.
+        </p>
+
+        <CurriculumForm
+          courseId={programme.id}
+          courseName={programme.name}
+        />
          
 
     </div>
