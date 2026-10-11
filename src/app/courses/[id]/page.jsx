@@ -3,9 +3,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 import { CgShapeHexagon } from 'react-icons/cg';
+import { FaRegAddressBook } from 'react-icons/fa6';
 import { GiGraduateCap } from 'react-icons/gi';
 import { IoMdCheckmark } from 'react-icons/io';
-import { IoArrowForward, IoLocation, IoTimeOutline } from 'react-icons/io5';
+import { IoArrowForward, IoCheckmark, IoLocation, IoTimeOutline } from 'react-icons/io5';
+import { MdOutlineDateRange, MdOutlineFileDownload } from 'react-icons/md';
+import { PiBagSimpleBold } from 'react-icons/pi';
 // import CurriculumForm from './CurriculumForm';
 
 export default async function ProgrammeDetails({ params }) {
@@ -77,16 +80,17 @@ export default async function ProgrammeDetails({ params }) {
                     </button>
                     </Link>
 
-                  
+                   <Link href="/contact">
                   <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text-white font-bold border border-white rounded-lg'>
                   <span><CgShapeHexagon /></span>
                     {programme.askques}
               </button>
+              </Link>
           
                 
                 <Link href={`/courses/${programme.id}/curri`}>
                   <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text-white font-bold border border-white rounded-lg'>
-                  <span><CgShapeHexagon /></span>
+                  <span><MdOutlineFileDownload /></span>
                     {programme.curri}
               </button>
             </Link> 
@@ -126,8 +130,8 @@ export default async function ProgrammeDetails({ params }) {
         /> */}     
     </div>
 
-    <div className='w-full h-auto bg-blue-100 py-12'>
-            <div className='w-[90%] h-auto flex justify-between items-center gap-4 mx-auto '>
+    <div className='w-full h-auto bg-blue-50 py-12'>
+            <div className='w-[90%] h-auto flex justify-between items-center gap-4 mx-auto items-start '>
                   <div className=' w-[60%] h-auto space-y-4'>
                         <h1 className='text-orange-800 font-bold'>What you will learn</h1>
                         <p className='w-159 text-3xl font-semibold text-blue-950'>Flexible Learning, Practical Skills, Real Opportunities</p>
@@ -148,9 +152,105 @@ export default async function ProgrammeDetails({ params }) {
                                 <p>{programme.details2}</p>
                               </div>
                         </div>
-                  </div>
 
-                  <div className='w-[30%] h-auto bg-white py-4  border-t-4 border-red-800 space-y-4'>
+                        <div className='w-full h-auto space-y-4'>
+                          <h1 className='font-semibold text-red-800 text-xl py-4'>Upcoming classes</h1>
+                          <div className='flex justify-between items-center gap-4 py-4'>
+                            <p className='text-5xl'>Choose a published intake.</p>
+                            <p className='text-sm text-black/40 font-bold'>Dates shown here come from the Nogtech class system.</p>
+                          </div>
+                        </div>
+
+                        <div className='w-full h-auto bg-blue-100 space-y-4 py-8 border-2 border-dotted '>
+                          <div className='flex justify-start items-start gap-4 px-4'>
+                            <span><MdOutlineDateRange size={30} /></span>
+                      
+                            <div className='space-y-4'>
+                            <p className='font-semibold text-2xl text-black/70'>The next intake is being confirmed.</p> 
+                            <p className='font-semibold text-black/60 '>Admissions will confirm the start date, class time, learning format, and availability before you make a commitment.</p>
+                            <div className=' font-bold  text-xl text-red-800 hover:underline cursor-pointer'>
+                              <Link href="/contact" className='flex justify-start items-center gap-4'>
+                              <p>Ask for the next class date</p>
+                              <span><IoArrowForward /></span>
+                              </Link>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className='w-full h-auto  py-12'>
+                              <div className='flex justify-between items-center gap-4 px-4'>
+                                  <h1 >Programme Overview</h1>
+                                  <p className='text-sm text-black/50'>4 topic areas / 6 weeks</p>
+                              </div>
+
+                      <div className='flex justify-between items-center gap-4 space-y-4 py-12'>
+                      <p  className='font-normal text-black text-4xl'>Explore the Curriculum</p>
+                    <Link href={`/courses/${programme.id}/curri`}>
+                  <button className='w-70 h-auto mx-auto flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-black font-bold border border-black rounded-lg'>
+                  <span><MdOutlineFileDownload /></span>
+                    {programme.curri}
+              </button>
+            </Link> 
+            </div>
+                <p className='text-black/50 text-xl font-semibold'>Explore the key topics covered in this programme. For a detailed breakdown of lessons and modules, please contact our Admissions Team.</p>            
+              </div>
+
+              <div className='w-full h-auto space-y-4'>
+                <h1 className='font-semibold text-red-800 text-xl py-4'>Get Ready Before Your First Class</h1>
+                <p  className='text-black text-4xl'>Know what you need and where the course can take you.</p>
+
+                <div className='w-full h-auto flex justify-between items-center gap-4'>
+                    <div className='w-[50%] h-70 space-y-4 px-4 py-4 bg-white'>
+                      <span className='text-green-700 py-4'><FaRegAddressBook size={30} /></span>
+                      <p className='text-xl font-semibold py-2'>Prerequisites</p>
+
+                      <div className='flex justify-between items-center gap-4'>
+                          <span className='text-green-700'><IoCheckmark /></span>
+                          <p>A laptop and reliable internet for online classes</p>
+                      </div>
+
+                      <div  className='flex justify-between items-center gap-4'>
+                        <span className='text-green-700'><IoCheckmark /></span>
+                        <p>No prior experience required for beginner tracks</p>
+                      </div>
+                    </div>
+{/*  */}
+                      <div className='w-[50%] h-auto space-y-4 px-4 py-4 bg-white'>
+                        <span className='text-green-700 py-4'><PiBagSimpleBold size={30} /></span>
+                        <p className='text-xl font-semibold py-2'>Tools You wll Gain Hands-On Experience With</p>
+
+                            <div className='flex justify-stretch items-center gap-4'>
+                          <span className='text-green-700'><IoCheckmark /></span>
+                          <p >Content Briefs and Project Guidelines</p>
+                      </div>
+
+                      <div  className='flex justify-stretch items-center gap-4'>
+                        <span className='text-green-700'><IoCheckmark /></span>
+                        <p>Software Development Libraries</p>
+                      </div>
+
+                        <div className='flex justify-stretch items-center gap-4'>
+                          <span className='text-green-700'><IoCheckmark /></span>
+                          <p>Code Structure & Diagrams</p>
+                      </div>
+
+                      <div  className='flex justify-stretch items-center gap-4'>
+                        <span className='text-green-700'><IoCheckmark /></span>
+                        <p>Reusable Code Components</p>
+                      </div>
+                      </div>
+                    <div>
+
+                    </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/*  */}
+
+                  <div className="w-[30%] shrink-0 sticky top-24 self-start bg-white py-4 border-t-4 border-red-800 space-y-2">
                         <h1 className='font-extrabold text-xl text-red-800 px-4 py-4'>Your seat includes</h1>
 
                         <div  className='flex justify-start items-center gap-4 px-4 py-2'>
@@ -175,19 +275,38 @@ export default async function ProgrammeDetails({ params }) {
 
                          <div  className='flex justify-start items-center gap-4 px-4'>
                           <span><IoMdCheckmark /></span> 
-                          <p>Verifiable certificate</p>
+                          <p className='text-black/40 font-bold'>Verifiable certificate</p>
                         </div>
 
                    
 
-                  <div className='space-y-4 w-60 h-aut0 mx-auto'>
+                  <div className='space-y-4 w-60 h-aut0 mx-auto py-3'>
                   <Link href="/application">
                   <button className="flex justify-center items-center gap-4 py-2 px-2 w-60 h-auto bg-red-800 cursor-pointer text-white font-bold border border-white rounded-lg shadow-[0_0_20px_6px_rgba(153,27,27,0.6)] hover:shadow-[0_0_30px_10px_rgba(153,27,27,0.8)] transition-all duration-300">
-                  <span><CgShapeHexagon /></span>
                     {programme.enroll}
+                    <span><IoArrowForward /></span>
                    </button>
                       </Link> 
                         </div>
+
+
+                   <div className='w-80 h-auto flex justify-start items-center'>
+                    <Link href="/contact">
+                  <button className='w-80 h-auto mx-auto flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-xl text-red-800 font-bold border border-white rounded-lg hover:underline'>
+                    {programme.askques}
+                    <span><CgShapeHexagon /></span>
+                 </button>
+              </Link>
+               </div>
+
+                  <div  >
+               <Link href={`/courses/${programme.id}/curri`}>
+                  <button className='w-70 h-auto mx-auto flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-xl text-red-800 font-bold border border-white rounded-lg hover:underline'>
+                  <span><MdOutlineFileDownload /></span>
+                    {programme.curri}
+              </button>
+            </Link> 
+              </div>
 
                   </div>
 
