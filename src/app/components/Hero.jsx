@@ -24,6 +24,7 @@ import {
 } from "react-icons/io";
 
 import { heroimage } from "@/lib/heroimage";
+import Link from "next/link";
 
 export default function Hero() {
   const jobs = [
@@ -140,50 +141,7 @@ export default function Hero() {
         {/* Hero Content */}
         <div className="relative z-[2] mx-auto flex min-h-[520px] max-w-7xl items-center px-4 py-12 sm:min-h-[600px] sm:px-6 sm:py-16 lg:min-h-[700px] lg:px-8 lg:py-20">
 
-          <div className="flex w-full flex-col items-center gap-10 lg:flex-row lg:gap-8">
-
-            {/* RIGHT SIDE: IMAGE SLIDER */}
-            <div className="hidden w-full lg:block lg:w-1/2 lg:pl-6 xl:pl-12">
-
-              <div className="relative mx-auto max-w-lg">
-
-                {/* Decorative Background */}
-                <div className="absolute -inset-4 rounded-3xl bg-blue-500/20 blur-2xl" />
-
-                {/* Image Slider */}
-                <div className="relative overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-2 shadow-2xl backdrop-blur-sm">
-
-                  <Swiper
-                    modules={[Autoplay, EffectFade]}
-                    effect="fade"
-                    loop={true}
-                    autoplay={{
-                      delay: 2000,
-                      disableOnInteraction: false,
-                    }}
-                    className="h-[320px] rounded-xl sm:h-[380px] lg:h-[420px]"
-                  >
-                    {heroImages.map((image, index) => (
-                      <SwiperSlide key={image}>
-                        <div className="relative h-full w-full overflow-hidden rounded-xl">
-                          <Image
-                            src={image}
-                            alt={`NOGTECH training ${index + 1}`}
-                            fill
-                            sizes="(min-width: 1024px) 45vw, 100vw"
-                            priority={index === 0}
-                            className="object-cover transition duration-700 hover:scale-105"
-                          />
-
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                        </div>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
-
-                </div>
-              </div>
-            </div>
+          <div className="flex w-full justify-stretch items-center gap-10">
 
             {/* LEFT SIDE */}
             <div className="w-full lg:w-1/2">
@@ -209,19 +167,13 @@ export default function Hero() {
               {/* Buttons */}
               <div className="mt-6 flex flex-col gap-3 min-[480px]:flex-row min-[480px]:flex-wrap sm:mt-8 sm:gap-4">
 
-                <button
-                  type="button"
-                  className="w-full rounded-lg bg-blue-600 px-5 py-3.5 font-semibold text-white transition duration-300 hover:bg-orange-500 sm:w-auto sm:px-7"
-                >
+                   <Link href="/application"  className="w-full rounded-lg bg-blue-600 px-5 py-3.5 font-semibold text-white transition duration-300 hover:bg-orange-500 sm:w-auto sm:px-7">
                   Register for Training
-                </button>
+            </Link>
 
-                <button
-                  type="button"
-                  className="w-full rounded-lg border border-white/50 bg-white/10 px-5 py-3.5 font-semibold text-white backdrop-blur-sm transition duration-300 hover:bg-white hover:text-gray-900 sm:w-auto sm:px-7"
-                >
+                    <Link href="/contact" className="w-full rounded-lg border border-white/50 bg-white/10 px-5 py-3.5 font-semibold text-white backdrop-blur-sm transition duration-300 hover:bg-white hover:text-gray-900 sm:w-auto sm:px-7">
                   Explore Courses
-                </button>
+                </Link>
 
               </div>
             </div>
@@ -427,9 +379,6 @@ export default function Hero() {
       </section>
 
 
-      {/* =========================================
-          4. CERTIFICATION PATH
-      ========================================= */}
 
       <section className="h-auto w-full py-8 sm:py-12">
 
