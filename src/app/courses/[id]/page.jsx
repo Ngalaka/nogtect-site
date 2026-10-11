@@ -9,7 +9,8 @@ import { IoMdCheckmark } from 'react-icons/io';
 import { IoArrowForward, IoCheckmark, IoLocation, IoTimeOutline } from 'react-icons/io5';
 import { MdOutlineDateRange, MdOutlineFileDownload } from 'react-icons/md';
 import { PiBagSimpleBold } from 'react-icons/pi';
-// import CurriculumForm from './CurriculumForm';
+import { SiCssdesignawards } from 'react-icons/si';
+
 
 export default async function ProgrammeDetails({ params }) {
      const { id } = await params; // we need to get the value of the query params from the url
@@ -24,6 +25,7 @@ export default async function ProgrammeDetails({ params }) {
         <p>programms not found</p>
       </div>
     );
+
   }
   return (
     <>
@@ -241,11 +243,27 @@ export default async function ProgrammeDetails({ params }) {
                       </div>
                       </div>
                     <div>
-
                     </div>
                 </div>
               </div>
 
+              <div className='w-full h-auto space-y-4'>
+                  <h1 className='font-semibold text-red-800 text-xl py-4'>Hands-On Project Experience</h1>
+                  <p className='text-5xl text-black/80'>Build work worth showing.</p>
+
+                  <div className='w-full h-auto bg-green-800 px-4 py-4'>
+                    <div className='flex justify-stretch items-center gap-4 px-4 py-4'>
+                      <span className='text-white'><SiCssdesignawards size={30} /></span>
+                      <div className='space-y-4'>
+                          <h1 className='font-bold  text-white'>Completion credential</h1>
+                          <p className='font-bolq text-4xl text-white'>Receive an Industry-Recognized Certificate</p>
+                          <p className='text-sm font-bold text-white/60'>Earn a Verifiable NOGTECH Certificate of Completion backed by an industry-aligned curriculum and practical, hands-on learning.</p>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+{/*  */}
+    
             </div>
 
             {/*  */}
@@ -307,11 +325,11 @@ export default async function ProgrammeDetails({ params }) {
               </button>
             </Link> 
               </div>
-
                   </div>
-
-            </div>
+           </div>
     </div>
+
+
     </>
   )
 }
