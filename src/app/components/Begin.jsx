@@ -5,26 +5,35 @@ import { IoArrowForward } from 'react-icons/io5'
 export default function Begin() {
   return (
     <>
-        <div className='w-full h-[200px] bg-blue-950 py-8 flex flex-col justify-center items-center'>
-                <div className='w-[90%] h-auto  bg-transparent mx-auto space-y-4 py-8'>
-                        <h1 className='text-xl font-extrabold text-blue-300'>Need help choosing the right course?</h1>
-                </div>
-
-                <div className='w-[90%] h-auto flex justify-between items-center gap-4'>
-                    <div>
-                        <p className='font-semibold text-4xl text-white'>Tell us your goal. We will help you choose.</p>
-                    </div>
-
-                     <div>
-
-                        <Link href="/contact"
-                       className="inline-block rounded-lgflex justify-center items-center gap-4 font-extrabold cursor-pointer text-sm bg-orange-600 text-white px-2 py-2 rounded-lg"
-                      >
-                     Get Course Guidance
-                    </Link>
-                     </div>
-                </div>
+      <div className="flex min-h-[200px] w-full flex-col items-center justify-center bg-blue-950 py-8">
+        {/* Heading */}
+        <div className="mx-auto h-auto w-[90%] space-y-4 bg-transparent py-4 sm:py-6">
+          <h1 className="text-lg font-extrabold text-blue-300 sm:text-xl">
+            Need help choosing the right course?
+          </h1>
         </div>
+
+        {/* Main content */}
+        <div className="flex h-auto w-[90%] flex-col items-start justify-between gap-6 lg:flex-row lg:items-center lg:gap-4">
+          {/* Description */}
+          <div className="w-full lg:w-auto">
+            <p className="text-2xl font-semibold leading-snug text-white sm:text-3xl lg:text-4xl">
+              Tell us your goal. We will help you choose.
+            </p>
+          </div>
+
+          {/* Call-to-action button */}
+          <div className="w-full shrink-0 sm:w-auto">
+            <Link
+              href="/contact"
+              className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-orange-600 px-4 py-3 text-sm font-extrabold text-white transition-colors duration-300 hover:bg-orange-700 sm:w-auto"
+            >
+              Get Course Guidance
+              <IoArrowForward size={18} />
+            </Link>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

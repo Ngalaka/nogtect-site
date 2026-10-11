@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -8,7 +9,6 @@ import { IoMdArrowForward } from "react-icons/io";
 export default function Email() {
   const [loading, setLoading] = useState(false);
 
-  // Array of dropdown items
   const guidances = [
     "Programme guidance",
     "Fees and payment plans",
@@ -18,7 +18,6 @@ export default function Email() {
     "Other enquiry",
   ];
 
-  // Array of dropdown items
   const courses = [
     "Full Stack Web Development",
     "UI/UX Design",
@@ -36,9 +35,6 @@ export default function Email() {
     "Not sure yet",
   ];
 
-  // destructure useForm to get register, handleSubmit, errors, and reset functions
-
-  // use router
   const router = useRouter();
 
   const {
@@ -46,7 +42,6 @@ export default function Email() {
     handleSubmit,
     formState: { errors },
     reset,
-    //  getValues, // for checking password and confirm password
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -64,15 +59,17 @@ export default function Email() {
         messages: data.messages,
         emailRole: "myself",
       };
+
       console.log("Payload:", payload);
+
       const res = await axios.post("/api/email", payload);
 
       console.log("Status:", res.status);
       console.log("Response:", res.data);
 
-      if (res.data.success || res.status == 200) {
-        router.push("/");
+      if (res.data.success || res.status === 200) {
         reset();
+        router.push("/");
       }
     } catch (error) {
       console.error(error.response?.data || error.message);
@@ -80,233 +77,256 @@ export default function Email() {
       setLoading(false);
     }
   };
+
+  // Shared responsive input styling
+  const inputClass =
+    "w-full min-w-0 h-auto outline-none py-3 bg-blue-950 text-white font-bold px-3 border-2 border-transparent rounded-md focus:border-orange-800 transition-colors";
+
+  const labelClass = "block mb-2 font-bold text-white text-sm sm:text-base";
+
+  const fieldClass = "w-full min-w-0 px-2 py-2";
+
+  const errorClass = "text-red-400 text-sm mt-1";
+
   return (
-    <>
-      <div>
-        <form action="" onSubmit={handleSubmit(onSubmit)}>
-          {/* First Name */}
-          <div className="flex justify-between items-center gap-4 ">
-            <div className="px-4 py-2">
-              <label className=" block mb-2 font-bold text-white">
-                First name
-              </label>
+    <div className="w-full">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full space-y-2"
+      >
+        {/* First name and last name */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
 
-              <input
-                type="text"
-                {...register("firstname", {
-                  required: "First name field is required",
-                })}
-                className="w-[300px] h-auto outline-none py-2  bg-blue-950 text-white font-bold px-2 hover:outline-1 hover:border-2 border-orange-800"
-              />
+          <div className={fieldClass}>
+            <label className={labelClass}>
+              First name
+            </label>
 
-              {errors.firstname && (
-                <p className="text-red-500 text-sm">
-                  {errors.firstname.message}
-                </p>
-              )}
-            </div>
+            <input
+              type="text"
+              autoComplete="given-name"
+              placeholder="Enter your first name"
+              {...register("firstname", {
+                required: "First name field is required",
+              })}
+              className={inputClass}
+            />
 
-            {/* Last Name */}
-            <div className="px-4 py-2">
-              <label className=" block mb-2 font-bold text-white">
-                Last name
-              </label>
-
-              <input
-                type="text"
-                {...register("lastname", {
-                  required: "last name field is required",
-                })}
-                className="w-[300px] h-auto outline-none py-2  bg-blue-950 text-white font-bold px-2 hover:outline-1 hover:border-2 border-orange-800"
-              />
-
-              {errors.lastname && (
-                <p className="text-red-500 text-sm">
-                  {errors.lastname.message}
-                </p>
-              )}
-            </div>
+            {errors.firstname && (
+              <p className={errorClass}>
+                {errors.firstname.message}
+              </p>
+            )}
           </div>
 
-          {/* tell detal */}
+          <div className={fieldClass}>
+            <label className={labelClass}>
+              Last name
+            </label>
 
-          <div className="flex justify-between items-center gap-4">
-            {/* email */}
-            <div className="px-4 py-2">
-              <label className=" block mb-2 font-bold text-white">
-                Email address
-              </label>
+            <input
+              type="text"
+              autoComplete="family-name"
+              placeholder="Enter your last name"
+              {...register("lastname", {
+                required: "Last name field is required",
+              })}
+              className={inputClass}
+            />
 
-              <input
-                type="email"
-                {...register("email", {
-                  required: "Email address field is required",
-                })}
-                className="w-[300px] h-auto outline-none py-2  bg-blue-950 text-white font-bold px-2 hover:outline-1 hover:border-2 border-orange-800"
-              />
-
-              {errors.email && (
-                <p className="text-red-500 text-sm ">{errors.email.message}</p>
-              )}
-            </div>
-
-            {/* mobile */}
-            <div className="px-4 py-2">
-              <label className=" block mb-2 font-bold text-white">
-                Mobile number
-              </label>
-
-              <input
-                type="text"
-                {...register("mobile", {
-                  required: "mobile field is required",
-                })}
-                className="w-[300px] h-auto outline-none py-2  bg-blue-950 text-white font-bold px-2 hover:outline-1 hover:border-2 border-orange-800"
-              />
-
-              {errors.mobile && (
-                <p className="text-red-500 text-sm">{errors.mobile.message}</p>
-              )}
-            </div>
+            {errors.lastname && (
+              <p className={errorClass}>
+                {errors.lastname.message}
+              </p>
+            )}
           </div>
 
-          {/* course */}
+        </div>
 
-          <div className="flex justify-between items-center gap-4">
-            {/* Preferred campus */}
-            <div className="px-4 py-2">
-              <label className=" block mb-2 font-bold text-white">
-                Preferred campus
-              </label>
+        {/* Email and mobile number */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
 
-              <select
-                {...register("campus", {
-                  required: "Please select a campus city",
-                })}
-                className="w-[300px] h-auto outline-none py-2  bg-blue-950 text-white font-bold px-2 hover:outline-1 hover:border-2 border-orange-800"
-              >
-                <option value="">Choose a Preferred city</option>
+          <div className={fieldClass}>
+            <label className={labelClass}>
+              Email address
+            </label>
 
-                {campuses.map((campus, index) => (
-                  <option
-                    key={index}
-                    value={campus}
-                    className=" block mb-2 font-bold text-white"
-                  >
-                    {campus}
-                  </option>
-                ))}
-              </select>
+            <input
+              type="email"
+              autoComplete="email"
+              placeholder="Enter your email address"
+              {...register("email", {
+                required: "Email address field is required",
+              })}
+              className={inputClass}
+            />
 
-              {errors.campus && (
-                <p className="text-red-600">{errors.campus.message}</p>
-              )}
-            </div>
-
-            {/* Programme of interest */}
-            <div className="px-4 py-2">
-              <label className=" block mb-2 font-bold text-white">
-                Programme of interest
-              </label>
-
-              <select
-                id="course"
-                {...register("course", {
-                  required: "Please select a course",
-                })}
-                className="w-[300px] h-auto outline-none py-2  bg-blue-950 text-white font-bold px-2 hover:outline-1 hover:border-2 border-orange-800"
-              >
-                <option value="">Not yet sure </option>
-
-                {courses.map((course, index) => (
-                  <option
-                    key={index}
-                    value={course}
-                    className=" block mb-2 font-bold text-white"
-                  >
-                    {course}
-                  </option>
-                ))}
-              </select>
-
-              {errors.course && (
-                <p className="text-red-500 text-sm">{errors.course.message}</p>
-              )}
-            </div>
+            {errors.email && (
+              <p className={errorClass}>
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
-          {/* guidance */}
-          <div className="px-4 py-4">
-            <label className=" block mb-2 font-bold text-white">
-              What would you like help with?
+          <div className={fieldClass}>
+            <label className={labelClass}>
+              Mobile number
+            </label>
+
+            <input
+              type="tel"
+              autoComplete="tel"
+              placeholder="Enter your mobile number"
+              {...register("mobile", {
+                required: "Mobile number field is required",
+              })}
+              className={inputClass}
+            />
+
+            {errors.mobile && (
+              <p className={errorClass}>
+                {errors.mobile.message}
+              </p>
+            )}
+          </div>
+
+        </div>
+
+        {/* Campus and programme */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-4">
+
+          <div className={fieldClass}>
+            <label className={labelClass}>
+              Preferred campus
             </label>
 
             <select
-              {...register("guidance", {
-                required: "Please select aguidance",
+              {...register("campus", {
+                required: "Please select a campus",
               })}
-              className="w-full h-auto outline-none py-3  bg-blue-950 text-white font-bold px-2 hover:outline-1 hover:border-2 border-orange-800"
+              className={inputClass}
             >
-              <option value="">Programme guidances </option>
+              <option value="">Choose a preferred campus</option>
 
-              {guidances.map((guidance, index) => (
-                <option
-                  key={index}
-                  value={guidances}
-                  className=" block mb-2 font-bold text-white"
-                >
-                  {guidance}
+              {campuses.map((campus) => (
+                <option key={campus} value={campus}>
+                  {campus}
                 </option>
               ))}
             </select>
 
-            {errors.guidance && (
-              <p className="text-red-500 text-sm">{errors.guidance.message}</p>
+            {errors.campus && (
+              <p className={errorClass}>
+                {errors.campus.message}
+              </p>
             )}
           </div>
 
-          {/* brief message */}
-          <div className="px-4 py-2">
-            <label className=" block mb-2 font-bold text-white">
-              Your message
+          <div className={fieldClass}>
+            <label className={labelClass}>
+              Programme of interest
             </label>
 
-            <textarea
-              name="messages"
-              {...register("messages", {
-                required: "last name field is required",
+            <select
+              {...register("course", {
+                required: "Please select a programme",
               })}
-              placeholder="Tell us the skill you want to learn, your current experience, preperred location and schedule"
-              rows="8"
-              className="w-full h-auto outline-none py-2  bg-blue-950 text-white font-bold px-2 hover:outline-1 hover:border-2 border-orange-800"
-            ></textarea>
+              className={inputClass}
+            >
+              <option value="">Select a programme</option>
 
-            {errors.messages && (
-              <p className="text-red-500 text-sm">{errors.messages.message}</p>
+              {courses.map((course) => (
+                <option key={course} value={course}>
+                  {course}
+                </option>
+              ))}
+            </select>
+
+            {errors.course && (
+              <p className={errorClass}>
+                {errors.course.message}
+              </p>
             )}
           </div>
 
-          <div className="px-4 py-4">
-            <button
-              type="submit"
-              disabled={loading}
-              className={`w-full h-auto p-2 flex justify-center items-center gap-4 lg:p-2 rounded-lg text-white lg:w-[400px] font-extrabold ${loading ? "bg-gray-300 cursor-not-allowed" : " bg-red-800 hover:bg-blue-700"}`}
-            >
-              {loading ? "Sending..." : "Send enquiry"}
-              <span>
-                <IoMdArrowForward />
-              </span>
-            </button>
-          </div>
+        </div>
 
-          <div className="px-4 py-4">
-            <p className=" block mb-2 font-semibold text-white/40">
-              By sending this information, you agree that Nogtech may contact
-              you about this enquiry.
+        {/* Guidance */}
+        <div className={fieldClass}>
+          <label className={labelClass}>
+            What would you like help with?
+          </label>
+
+          <select
+            {...register("guidance", {
+              required: "Please select the type of guidance you need",
+            })}
+            className={inputClass}
+          >
+            <option value="">Choose an enquiry type</option>
+
+            {guidances.map((guidance) => (
+              <option key={guidance} value={guidance}>
+                {guidance}
+              </option>
+            ))}
+          </select>
+
+          {errors.guidance && (
+            <p className={errorClass}>
+              {errors.guidance.message}
             </p>
-          </div>
-        </form>
-      </div>
-    </>
+          )}
+        </div>
+
+        {/* Message */}
+        <div className={fieldClass}>
+          <label className={labelClass}>
+            Your message
+          </label>
+
+          <textarea
+            {...register("messages", {
+              required: "Please enter your message",
+            })}
+            placeholder="Tell us the skill you want to learn, your current experience, preferred location and schedule."
+            rows={6}
+            className={`${inputClass} resize-y leading-7`}
+          />
+
+          {errors.messages && (
+            <p className={errorClass}>
+              {errors.messages.message}
+            </p>
+          )}
+        </div>
+
+        {/* Submit button */}
+        <div className="px-2 py-4">
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full sm:w-auto sm:min-w-[280px] lg:w-[400px] min-h-12 px-5 py-3 flex justify-center items-center gap-3 rounded-lg text-white font-extrabold transition-colors ${
+              loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-red-800 hover:bg-blue-700 cursor-pointer"
+            }`}
+          >
+            {loading ? "Sending..." : "Send enquiry"}
+
+            <IoMdArrowForward className="text-xl shrink-0" />
+          </button>
+        </div>
+
+        {/* Privacy notice */}
+        <div className="px-2 py-2">
+          <p className="mb-2 font-semibold text-sm sm:text-base text-white/60 leading-6">
+            By sending this information, you agree that NOGTECH may contact
+            you about this enquiry.
+          </p>
+        </div>
+
+      </form>
+    </div>
   );
 }

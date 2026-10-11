@@ -29,306 +29,406 @@ export default async function ProgrammeDetails({ params }) {
   }
   return (
     <>
-    <div className='w-full h-auto bg-blue-950'>
+    {/* Learning section */}
+<div className="w-full bg-blue-50 py-8 sm:py-10 lg:py-12">
 
-        <div className=" py-4 px-4 ">
+  <div className="mx-auto flex w-full max-w-7xl flex-col items-stretch gap-8 px-4 sm:px-6 lg:flex-row lg:items-start lg:gap-10 lg:px-8">
 
-        <Link href="/courses" className='className="text-white text-sm py-8 px-4 font-bold text-white'>
-             ← All courses
+    {/* Sticky sidebar */}
+    <aside className="w-full min-w-0 self-start border-t-4 border-red-800 bg-white py-4 shadow-sm lg:sticky lg:top-24 lg:w-[30%] lg:shrink-0">
+
+      <h2 className="px-4 py-4 text-xl font-extrabold text-red-800">
+        Your seat includes
+      </h2>
+
+      {[
+        "Live instructor-led classes",
+        "Practical labs and projects",
+        "Course materials",
+        "Portfolio and career support",
+        "Verifiable certificate",
+      ].map((benefit) => (
+        <div key={benefit} className="flex items-start gap-3 px-4 py-2">
+          <span className="mt-1 shrink-0">
+            <IoMdCheckmark />
+          </span>
+          <p className="font-bold text-black/50">{benefit}</p>
+        </div>
+      ))}
+
+      <div className="space-y-3 px-4 py-4">
+
+        <Link
+          href="/application"
+          className="flex w-full items-center justify-center gap-3 rounded-lg bg-red-800 px-4 py-3 text-center font-bold text-white shadow-lg transition hover:bg-red-900"
+        >
+          {programme.enroll}
+          <IoArrowForward />
         </Link>
-        
-        </div>
 
-            <div className='w-[90%] h-auto mx-auto flex justify-between items-center gap-4'>
+        <Link
+          href="/contact"
+          className="flex w-full items-center justify-center gap-3 rounded-lg border border-red-800 px-4 py-3 text-center font-bold text-red-800 hover:bg-red-50"
+        >
+          {programme.askques}
+          <CgShapeHexagon />
+        </Link>
 
-            <div className='w-[50%] h-auto space-y-4'>
-            <h1 className="text-sm font-bold mt-6 border-l-4 border-red-800 px-4 text-white">
-            {programme.name}
-          </h1>
+        <Link
+          href={`/courses/${programme.id}/curri`}
+          className="flex w-full items-center justify-center gap-3 rounded-lg border border-red-800 px-4 py-3 text-center font-bold text-red-800 hover:bg-red-50"
+        >
+          <MdOutlineFileDownload />
+          {programme.curri}
+        </Link>
 
-          <p className='font-semibold text-4xl text-white'>{programme.program}</p>
-          <p className='text-white/60 font-normal text-xl'>{programme.description}</p>
+      </div>
+    </aside>
 
-          <div className='flex justify-between items-center gap-4 py-4'>
-            <div className='flex justify-between items-center gap-4'>
-                <span className='text-2xl font-bold text-green-700'><IoTimeOutline /></span>
-                <div>
-                    <p className=' text-sm text-white font-semibold'>{programme.duration}</p>
-                    <p className='text-sm text-white/60 font-normal'>{programme.time}</p>
-                </div>
-                
-            </div>
-            <div className='flex justify-between items-center gap-4'>
-                <span className='text-2xl font-bold text-green-700'><GiGraduateCap /></span>
-                 <div>
-                    <p className=' text-sm  text-white font-semibold'>{programme.mode}</p>
-                    <p className='text-sm text-white/60 font-normal'>{programme.aid}</p>
-                 </div>
-            </div>
-            <div className='flex justify-between items-center gap-4'>
-                <span className='text-2xl font-bold text-green-700'><IoLocation /></span>
-                <div>
-                    <p className=' text-sm  text-white font-semibold'>{programme.format}</p>
-                    <p className='text-sm text-white/60 font-normal'>{programme.type}</p>
-                </div>
-            </div>
-          </div>
-          
-          <div className='flex justify-between items-center gap-4 px-4'>
-                   <Link href="/application">
-                <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer text-sm bg-red-800 text-white font-bold rounded-lg'>
-                    {programme.enroll}
-                    <span><IoArrowForward /></span>
-                    </button>
-                    </Link>
+    {/* Main learning content */}
+    <div className="w-full min-w-0 space-y-10 lg:flex-1">
 
-                   <Link href="/contact">
-                  <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text-white font-bold border border-white rounded-lg'>
-                  <span><CgShapeHexagon /></span>
-                    {programme.askques}
-              </button>
-              </Link>
-          
-                
-                <Link href={`/courses/${programme.id}/curri`}>
-                  <button className='flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-sm text-white font-bold border border-white rounded-lg'>
-                  <span><MdOutlineFileDownload /></span>
-                    {programme.curri}
-              </button>
-            </Link> 
-              
-          </div>
-        </div>
+      {/* What you will learn */}
+      <section className="space-y-4">
+        <h2 className="font-bold text-orange-800">
+          What you will learn
+        </h2>
 
-        <div className='w-[40%] h-auto border border-white  pb-2'>
-          <Image
-            src={programme.image}
-            alt={programme.title}
-            width={300}
-            height={300}
-            className="w-[500px] h-[400px] object-cover rounded-2xl"/>
-
-          <div className='w-full h-auto'>
-            <div className=' bg-gradient-to-br from-gray-400 via-gray-600 to-gray-950 px-4 py-2'>
-                 <p className='text-white text-xl font-bold'>TUITION</p>
-            </div>
-
-            <div className='space-y-2 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-950 px-4 py-2'>
-                <p className='text-xl font-extrabold text-white'>{programme.price}</p>
-               <p className='text-white'>VAT-inclusive where applicable. Instalment plans are available.</p>
-            </div>
-        
-          </div>
-          </div>
-
-            </div>
-
-        <p className="mb-6 text-gray-600">
-          Send email about {programme.name}.
+        <p className="w-full max-w-3xl text-2xl font-semibold leading-tight text-blue-950 sm:text-3xl">
+          Flexible Learning, Practical Skills, Real Opportunities
         </p>
-        {/* <CurriculumForm
-          courseId={programme.id}
-          courseName={programme.name}
-        /> */}     
-    </div>
 
-    <div className='w-full h-auto bg-blue-50 py-12'>
-            <div className='w-[90%] h-auto flex justify-between items-center gap-4 mx-auto items-start '>
-                  <div className=' w-[60%] h-auto space-y-4'>
-                        <h1 className='text-orange-800 font-bold'>What you will learn</h1>
-                        <p className='w-159 text-3xl font-semibold text-blue-950'>Flexible Learning, Practical Skills, Real Opportunities</p>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
 
-                        <div className='grid grid-cols-2 gap-4'>
-                              <div className='flex justify-center items-center gap-4 px-4 py-4 border border-black/10 '>
-                                <span><IoMdCheckmark /></span>
-                                <p>{programme.details}</p>
-                              </div>
+          <div className="flex items-start gap-3 border border-black/10 p-4">
+            <span className="mt-1 shrink-0">
+              <IoMdCheckmark />
+            </span>
+            <p className="min-w-0">{programme.details}</p>
+          </div>
 
-                              <div className='flex justify-center items-center gap-4 px-4 py-4 border border-black/10 '>
-                                <span><IoMdCheckmark /></span>
-                                <p>{programme.details1}</p>
-                              </div>
+          <div className="flex items-start gap-3 border border-black/10 p-4">
+            <span className="mt-1 shrink-0">
+              <IoMdCheckmark />
+            </span>
+            <p className="min-w-0">{programme.details1}</p>
+          </div>
 
-                              <div className='flex justify-center items-center gap-4 px-4 py-4 border border-black/10 '>
-                                <span><IoMdCheckmark /></span>
-                                <p>{programme.details2}</p>
-                              </div>
-                        </div>
+          <div className="flex items-start gap-3 border border-black/10 p-4 sm:col-span-2">
+            <span className="mt-1 shrink-0">
+              <IoMdCheckmark />
+            </span>
+            <p className="min-w-0">{programme.details2}</p>
+          </div>
 
-                        <div className='w-full h-auto space-y-4'>
-                          <h1 className='font-semibold text-red-800 text-xl py-4'>Upcoming classes</h1>
-                          <div className='flex justify-between items-center gap-4 py-4'>
-                            <p className='text-5xl'>Choose a published intake.</p>
-                            <p className='text-sm text-black/40 font-bold'>Dates shown here come from the Nogtech class system.</p>
-                          </div>
-                        </div>
+        </div>
+      </section>
 
-                        <div className='w-full h-auto bg-blue-100 space-y-4 py-8 border-2 border-dotted '>
-                          <div className='flex justify-start items-start gap-4 px-4'>
-                            <span><MdOutlineDateRange size={30} /></span>
-                      
-                            <div className='space-y-4'>
-                            <p className='font-semibold text-2xl text-black/70'>The next intake is being confirmed.</p> 
-                            <p className='font-semibold text-black/60 '>Admissions will confirm the start date, class time, learning format, and availability before you make a commitment.</p>
-                            <div className=' font-bold  text-xl text-red-800 hover:underline cursor-pointer'>
-                              <Link href="/contact" className='flex justify-start items-center gap-4'>
-                              <p>Ask for the next class date</p>
-                              <span><IoArrowForward /></span>
-                              </Link>
-                            </div>
-                            </div>
-                          </div>
-                        </div>
+      {/* Upcoming classes */}
+      <section className="w-full space-y-4">
+        <h2 className="py-2 text-xl font-semibold text-red-800">
+          Upcoming classes
+        </h2>
 
-                        <div className='w-full h-auto  py-12'>
-                              <div className='flex justify-between items-center gap-4 px-4'>
-                                  <h1 >Programme Overview</h1>
-                                  <p className='text-sm text-black/50'>4 topic areas / 6 weeks</p>
-                              </div>
+        <div className="flex flex-col gap-3 py-2 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-3xl font-semibold text-blue-950 sm:text-4xl">
+            Choose a published intake.
+          </p>
+          <p className="text-sm font-bold text-black/40">
+            Dates shown here come from the NOGTECH class system.
+          </p>
+        </div>
 
-                      <div className='flex justify-between items-center gap-4 space-y-4 py-12'>
-                      <p  className='font-normal text-black text-4xl'>Explore the Curriculum</p>
-                    <Link href={`/courses/${programme.id}/curri`}>
-                  <button className='w-70 h-auto mx-auto flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-black font-bold border border-black rounded-lg'>
-                  <span><MdOutlineFileDownload /></span>
-                    {programme.curri}
-              </button>
-            </Link> 
-            </div>
-                <p className='text-black/50 text-xl font-semibold'>Explore the key topics covered in this programme. For a detailed breakdown of lessons and modules, please contact our Admissions Team.</p>            
-              </div>
+        <div className="w-full space-y-4 border-2 border-dotted bg-blue-100 px-4 py-6 sm:px-6 sm:py-8">
+          <div className="flex items-start gap-3 sm:gap-4">
+            <span className="shrink-0">
+              <MdOutlineDateRange size={30} />
+            </span>
 
-              <div className='w-full h-auto space-y-4'>
-                <h1 className='font-semibold text-red-800 text-xl py-4'>Get Ready Before Your First Class</h1>
-                <p  className='text-black text-4xl'>Know what you need and where the course can take you.</p>
+            <div className="min-w-0 space-y-4">
+              <p className="text-xl font-semibold text-black/70 sm:text-2xl">
+                The next intake is being confirmed.
+              </p>
 
-                <div className='w-full h-auto flex justify-between items-center gap-4'>
-                    <div className='w-[50%] h-70 space-y-4 px-4 py-4 bg-white'>
-                      <span className='text-green-700 py-4'><FaRegAddressBook size={30} /></span>
-                      <p className='text-xl font-semibold py-2'>Prerequisites</p>
+              <p className="font-semibold leading-relaxed text-black/60">
+                Admissions will confirm the start date, class time, learning
+                format, and availability before you make a commitment.
+              </p>
 
-                      <div className='flex justify-between items-center gap-4'>
-                          <span className='text-green-700'><IoCheckmark /></span>
-                          <p>A laptop and reliable internet for online classes</p>
-                      </div>
-
-                      <div  className='flex justify-between items-center gap-4'>
-                        <span className='text-green-700'><IoCheckmark /></span>
-                        <p>No prior experience required for beginner tracks</p>
-                      </div>
-                    </div>
-{/*  */}
-                      <div className='w-[50%] h-auto space-y-4 px-4 py-4 bg-white'>
-                        <span className='text-green-700 py-4'><PiBagSimpleBold size={30} /></span>
-                        <p className='text-xl font-semibold py-2'>Tools You wll Gain Hands-On Experience With</p>
-
-                            <div className='flex justify-stretch items-center gap-4'>
-                          <span className='text-green-700'><IoCheckmark /></span>
-                          <p >Content Briefs and Project Guidelines</p>
-                      </div>
-
-                      <div  className='flex justify-stretch items-center gap-4'>
-                        <span className='text-green-700'><IoCheckmark /></span>
-                        <p>Software Development Libraries</p>
-                      </div>
-
-                        <div className='flex justify-stretch items-center gap-4'>
-                          <span className='text-green-700'><IoCheckmark /></span>
-                          <p>Code Structure & Diagrams</p>
-                      </div>
-
-                      <div  className='flex justify-stretch items-center gap-4'>
-                        <span className='text-green-700'><IoCheckmark /></span>
-                        <p>Reusable Code Components</p>
-                      </div>
-                      </div>
-                    <div>
-                    </div>
-                </div>
-              </div>
-
-              <div className='w-full h-auto space-y-4'>
-                  <h1 className='font-semibold text-red-800 text-xl py-4'>Hands-On Project Experience</h1>
-                  <p className='text-5xl text-black/80'>Build work worth showing.</p>
-
-                  <div className='w-full h-auto bg-green-800 px-4 py-4'>
-                    <div className='flex justify-stretch items-center gap-4 px-4 py-4'>
-                      <span className='text-white'><SiCssdesignawards size={30} /></span>
-                      <div className='space-y-4'>
-                          <h1 className='font-bold  text-white'>Completion credential</h1>
-                          <p className='font-bolq text-4xl text-white'>Receive an Industry-Recognized Certificate</p>
-                          <p className='text-sm font-bold text-white/60'>Earn a Verifiable NOGTECH Certificate of Completion backed by an industry-aligned curriculum and practical, hands-on learning.</p>
-                      </div>
-                    </div>
-                  </div>
-              </div>
-{/*  */}
-    
-            </div>
-
-            {/*  */}
-
-                  <div className="w-[30%] shrink-0 sticky top-24 self-start bg-white py-4 border-t-4 border-red-800 space-y-2">
-                        <h1 className='font-extrabold text-xl text-red-800 px-4 py-4'>Your seat includes</h1>
-
-                        <div  className='flex justify-start items-center gap-4 px-4 py-2'>
-                          <span><IoMdCheckmark /></span> 
-                          <p className='text-black/40 font-bold'>Live instructor-led classes</p>
-                        </div>
-
-                        <div  className='flex justify-start items-center gap-4 px-4 py-2'>
-                          <span><IoMdCheckmark /></span> 
-                          <p className='text-black/40 font-bold'>Practical labs and projects</p>
-                        </div>
-
-                        <div  className='flex justify-start items-center gap-4 px-4 py-2'>
-                          <span><IoMdCheckmark /></span> 
-                          <p className='text-black/40 font-bold'>Course materials</p>
-                        </div>
-
-                        <div  className='flex justify-start items-center gap-4 px-4 py-2'>
-                          <span><IoMdCheckmark /></span> 
-                          <p className='text-black/40 font-bold'>Portfolio and career support</p>
-                        </div>
-
-                         <div  className='flex justify-start items-center gap-4 px-4'>
-                          <span><IoMdCheckmark /></span> 
-                          <p className='text-black/40 font-bold'>Verifiable certificate</p>
-                        </div>
-
-                   
-
-                  <div className='space-y-4 w-60 h-aut0 mx-auto py-3'>
-                  <Link href="/application">
-                  <button className="flex justify-center items-center gap-4 py-2 px-2 w-60 h-auto bg-red-800 cursor-pointer text-white font-bold border border-white rounded-lg shadow-[0_0_20px_6px_rgba(153,27,27,0.6)] hover:shadow-[0_0_30px_10px_rgba(153,27,27,0.8)] transition-all duration-300">
-                    {programme.enroll}
-                    <span><IoArrowForward /></span>
-                   </button>
-                      </Link> 
-                        </div>
-
-
-                   <div className='w-80 h-auto flex justify-start items-center'>
-                    <Link href="/contact">
-                  <button className='w-80 h-auto mx-auto flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-xl text-red-800 font-bold border border-white rounded-lg hover:underline'>
-                    {programme.askques}
-                    <span><CgShapeHexagon /></span>
-                 </button>
+              <Link
+                href="/contact"
+                className="inline-flex flex-wrap items-center gap-3 text-lg font-bold text-red-800 hover:underline sm:text-xl"
+              >
+                Ask for the next class date
+                <IoArrowForward />
               </Link>
-               </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                  <div  >
-               <Link href={`/courses/${programme.id}/curri`}>
-                  <button className='w-70 h-auto mx-auto flex justify-center items-center gap-4 py-2 px-2 cursor-pointer bg-transparent text-xl text-red-800 font-bold border border-white rounded-lg hover:underline'>
-                  <span><MdOutlineFileDownload /></span>
-                    {programme.curri}
-              </button>
-            </Link> 
+      {/* Programme overview */}
+      <section className="w-full space-y-5 py-6 sm:py-8">
+
+        <div className="flex flex-col gap-2 px-1 sm:flex-row sm:items-center sm:justify-between">
+          <h2 className="font-semibold text-blue-950">
+            Programme Overview
+          </h2>
+          <p className="text-sm text-black/50">
+            4 topic areas / 6 weeks
+          </p>
+        </div>
+
+        <div className="flex flex-col items-start gap-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-3xl font-normal text-black sm:text-4xl">
+            Explore the Curriculum
+          </p>
+
+          <Link
+            href={`/courses/${programme.id}/curri`}
+            className="inline-flex w-full items-center justify-center gap-3 rounded-lg border border-black px-4 py-3 font-bold text-black hover:bg-blue-100 sm:w-auto"
+          >
+            <MdOutlineFileDownload />
+            {programme.curri}
+          </Link>
+        </div>
+
+        <p className="text-base font-semibold leading-relaxed text-black/50 sm:text-lg">
+          Explore the key topics covered in this programme. For a detailed
+          breakdown of lessons and modules, please contact our Admissions Team.
+        </p>
+      </section>
+
+      {/* Prerequisites and tools */}
+      <section className="w-full space-y-4">
+        <h2 className="py-2 text-xl font-semibold text-red-800">
+          Get Ready Before Your First Class
+        </h2>
+
+        <p className="text-3xl text-black sm:text-4xl">
+          Know what you need and where the course can take you.
+        </p>
+
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+
+          <div className="min-w-0 space-y-4 bg-white px-4 py-5">
+            <span className="block text-green-700">
+              <FaRegAddressBook size={30} />
+            </span>
+
+            <p className="py-2 text-xl font-semibold">Prerequisites</p>
+
+            <div className="flex items-start gap-3">
+              <span className="mt-1 shrink-0 text-green-700">
+                <IoCheckmark />
+              </span>
+              <p>A laptop and reliable internet for online classes</p>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <span className="mt-1 shrink-0 text-green-700">
+                <IoCheckmark />
+              </span>
+              <p>No prior experience required for beginner tracks</p>
+            </div>
+          </div>
+
+          <div className="min-w-0 space-y-4 bg-white px-4 py-5">
+            <span className="block text-green-700">
+              <PiBagSimpleBold size={30} />
+            </span>
+
+            <p className="py-2 text-xl font-semibold">
+              Tools You Will Gain Hands-On Experience With
+            </p>
+
+            {[
+              "Content Briefs and Project Guidelines",
+              "Software Development Libraries",
+              "Code Structure & Diagrams",
+              "Reusable Code Components",
+            ].map((tool) => (
+              <div key={tool} className="flex items-start gap-3">
+                <span className="mt-1 shrink-0 text-green-700">
+                  <IoCheckmark />
+                </span>
+                <p>{tool}</p>
               </div>
-                  </div>
-           </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* Hands-on project experience */}
+      <section className="w-full space-y-4">
+        <h2 className="py-2 text-xl font-semibold text-red-800">
+          Hands-On Project Experience
+        </h2>
+
+        <p className="text-3xl text-black/80 sm:text-4xl lg:text-5xl">
+          Build work worth showing.
+        </p>
+
+        <div className="w-full bg-green-800 px-4 py-5 sm:px-6 sm:py-6">
+          <div className="flex items-start gap-4">
+            <span className="shrink-0 text-white">
+              <SiCssdesignawards size={30} />
+            </span>
+
+            <div className="min-w-0 space-y-4">
+              <h3 className="font-bold text-white">
+                Completion credential
+              </h3>
+
+              <p className="text-2xl font-bold leading-tight text-white sm:text-3xl">
+                Receive an Industry-Recognized Certificate
+              </p>
+
+              <p className="text-sm font-bold leading-relaxed text-white/70">
+                Earn a verifiable NOGTECH Certificate of Completion backed by
+                an industry-aligned curriculum and practical, hands-on learning.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
 
+  </div>
+</div>
+
+<div className="w-full bg-blue-950">
+
+  <p className="mx-auto max-w-7xl px-4 pb-6 text-gray-300 sm:px-6 lg:px-8">
+    Send email about {programme.name}.
+  </p>
+
+  {/* Course introduction and tuition */}
+  <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 pb-10 sm:px-6 lg:flex-row lg:items-start lg:px-8">
+
+    {/* Tuition card */}
+    <div className="w-full min-w-0 overflow-hidden rounded-xl border border-white/20 pb-2 lg:w-[40%] lg:shrink-0">
+
+      <Image
+        src={programme.image}
+        alt={programme.title || programme.name}
+        width={700}
+        height={500}
+        sizes="(max-width: 1023px) 100vw, 40vw"
+        className="h-auto max-h-[420px] w-full object-cover"
+      />
+
+      <div className="bg-gradient-to-br from-gray-400 via-gray-600 to-gray-950 px-4 py-3">
+        <p className="text-xl font-bold text-white">TUITION</p>
+      </div>
+
+      <div className="space-y-2 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-950 px-4 py-4">
+        <p className="text-xl font-extrabold text-white sm:text-2xl">
+          {programme.price}
+        </p>
+        <p className="text-sm leading-relaxed text-white sm:text-base">
+          VAT-inclusive where applicable. Instalment plans are available.
+        </p>
+      </div>
+
+    </div>
+
+    {/* Course information */}
+    <div className="w-full min-w-0 space-y-5 lg:w-[60%]">
+
+      <h1 className="mt-4 border-l-4 border-red-800 px-4 text-sm font-bold text-white">
+        {programme.name}
+      </h1>
+
+      <p className="text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">
+        {programme.program}
+      </p>
+
+      <p className="text-base leading-relaxed text-white/60 sm:text-lg">
+        {programme.description}
+      </p>
+
+      {/* Course information */}
+      <div className="grid grid-cols-1 gap-5 py-4 sm:grid-cols-2 xl:grid-cols-3">
+
+        <div className="flex items-start gap-3">
+          <span className="shrink-0 text-2xl text-green-500">
+            <IoTimeOutline />
+          </span>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-white">{programme.duration}</p>
+            <p className="text-sm text-white/60">{programme.time}</p>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-3">
+          <span className="shrink-0 text-2xl text-green-500">
+            <GiGraduateCap />
+          </span>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-white">{programme.mode}</p>
+            <p className="text-sm text-white/60">{programme.aid}</p>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-3">
+          <span className="shrink-0 text-2xl text-green-500">
+            <IoLocation />
+          </span>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-white">{programme.format}</p>
+            <p className="text-sm text-white/60">{programme.type}</p>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Course buttons */}
+      <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap">
+
+        <Link
+          href="/application"
+          className="inline-flex w-full items-center justify-center gap-3 rounded-lg bg-red-800 px-4 py-3 text-sm font-bold text-white hover:bg-red-900 sm:w-auto"
+        >
+          {programme.enroll}
+          <IoArrowForward />
+        </Link>
+
+        <Link
+          href="/contact"
+          className="inline-flex w-full items-center justify-center gap-3 rounded-lg border border-white px-4 py-3 text-sm font-bold text-white hover:bg-white hover:text-blue-950 sm:w-auto"
+        >
+          <CgShapeHexagon />
+          {programme.askques}
+        </Link>
+
+        <Link
+          href={`/courses/${programme.id}/curri`}
+          className="inline-flex w-full items-center justify-center gap-3 rounded-lg border border-white px-4 py-3 text-sm font-bold text-white hover:bg-white hover:text-blue-950 sm:w-auto"
+        >
+          <MdOutlineFileDownload />
+          {programme.curri}
+        </Link>
+
+      </div>
+    </div>
+
+  </div>
+
+  {/* Back to all courses */}
+  <div className="mx-auto w-full max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+    <Link
+      href="/courses"
+      className="inline-block py-2 text-sm font-bold text-white hover:text-red-300"
+    >
+      ← All courses
+    </Link>
+  </div>
+
+  {/* Keep your CurriculumForm here if needed */}
+</div>
 
     </>
   )

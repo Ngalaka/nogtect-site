@@ -1,276 +1,19 @@
 "use client";
+
+import React, { useState } from "react";
 import { programmes } from "@/lib/programmes";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { useForm } from "react-hook-form";
 import { CiClock1 } from "react-icons/ci";
 import { IoArrowForward } from "react-icons/io5";
 
 export default function Searchcourse() {
-  // programmes, bootcamps, and courses data
-  // const programmes = [
-  //   {
-  //     id: 1,
-  //     name: "Business & Productivity",
-  //     program: "Advanced Microsoft Excel",
-  //     description:
-  //    "Advance your Excel skills for reporting, formulas, pivot tables, dashboards, automation, and business analysis.",
-  //     duration: "12 weeks",
-  //     icon: CiClock1,
-  //     format: "Physical / Online virtual",
-  //     price: "₦86,000",
-  //     image: "/advanexcel.jpg",
-  //     icon2: IoArrowForward ,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Data Science & Analytics",
-  //     program: "Data Science Course",
-  //     description:
-  //       "Automate repetitive work and business processes with generative AI, workflow platforms, APIs, agents, and responsible human oversight.",
-  //     duration: "16 weeks",
-  //     icon: <CiClock1 />,
-  //     format: "Physical / Online virtual",
-  //     price: "₦430,000",
-  //     image: "/datasci.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
+  const [filteredProgrammes, setFilteredProgrammes] = useState(programmes);
 
-  //   {
-  //     id: 3,
-  //     name: "UI/UX & Product Design",
-  //     program: "UI/UX & Product Design",
-  //     description:
-  //       "Learn user research, wireframing, prototyping, usability testing, and portfolio-ready product design with Figma.",
-  //     duration: "12 weeks",
-  //     icon: <CiClock1 />,
-  //     format: "Physical / Online virtual",
-  //     price: "₦161,250",
-  //     image: "/uiux.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-
-  //   {
-  //     id: 4,
-  //     name: "Software Development",
-  //     program: "Web Development with PHP & MySQL",
-  //     description:
-  //       "Learn dynamic website development with PHP, MySQL, forms, authentication, CRUD operations, and deployment basics.",
-  //     duration: "16 weeks",
-  //     icon: <CiClock1 />,
-  //     format: "Physical / Online virtual",
-  //     price: "₦430,000",
-  //     image: "/php.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-
-  //   {
-  //     id: 5,
-  //     name: "Creative & Media",
-  //     program: "Videography",
-  //     description:
-  //       "Learn camera movement, lighting, sound, storytelling, editing, and practical video production for brands and events.",
-  //     duration: "8 weeks",
-  //     icon: <CiClock1 />,
-  //     format: "On-campus / Hybrid",
-  //     price: "₦215,000",
-  //     image: "/multi.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-
-  //   {
-  //     id: 6,
-  //     name: "Digital Marketing",
-  //     program: "Social Media Marketing",
-  //     description:
-  //       "Plan, create, publish, and measure social media campaigns for brands, SMEs, creators, and community growth.",
-  //     duration: "8 weeks",
-  //     icon: <CiClock1 />,
-  //     format: "Online / Physical",
-  //     price: "₦64,500",
-  //     image: "/digitalmark.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-
-  //   {
-  //     id: 7,
-  //     name: "Software Development",
-  //     program: "Python Programming",
-  //     description:
-  //       "Learn Python from the ground up with scripts, functions, files, APIs, data handling, testing, and practical projects.",
-  //     icon: <CiClock1 />,
-  //     duration: "12 weeks",
-  //     format: "Physical / Online virtual",
-  //     price: "₦215,000",
-  //     image: "/pythons.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-
-  //   {
-  //     id: 8,
-  //     name: "Cybersecurity",
-  //     program: "Certified Ethical Hacker (CEH)",
-  //     description:
-  //       "Prepare for ethical hacking and security testing with practical labs, attack-and-defence concepts, and CEH-aligned instruction.",
-  //     icon: <CiClock1 />,
-  //     duration: "16 weeks",
-  //     format: "Physical / Online virtual",
-  //     price: "₦1,290,000",
-  //     image: "/cybersecurity.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-
-  //   {
-  //     id: 9,
-  //     name: "Digital Marketing",
-  //     program: "Content & Copywriting",
-  //     description:
-  //       "Learn persuasive writing for websites, social media, email, ads, and business communication.",
-  //     icon: <CiClock1 />,
-  //     duration: "8 weeks",
-  //     format: "Online / Physical",
-  //     price: "₦107,500",
-  //     image: "/contentcreat.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-
-  //   {
-  //     id: 10,
-  //     name: "Data Science & Analytics",
-  //     program: "Data Analysis with Excel",
-  //     description:
-  //       "Learn Excel formulas, data cleaning, pivot tables, charts, dashboards, and practical reporting for business decisions.",
-  //     icon: <CiClock1 />,
-  //     duration: "12 weeks",
-  //     format: "Online / Physical",
-  //     price: "₦161,250",
-  //     image: "/dataxcel.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-
-  //   {
-  //     id: 11,
-  //     name: "Data Science & Analytics",
-  //     program: "Data Analysis with Power BI",
-  //     description:
-  //       "Turn raw data into clear dashboards, models, and business insights using Microsoft Power BI..",
-  //     icon: <CiClock1 />,
-  //     duration: "8 weeks",
-  //     format: "Online / Physical",
-  //     price: "₦215,000",
-  //     image: "/powerbi.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-
-  //   {
-  //     id: 12,
-  //     name: "Software Development",
-  //     program: "Full-Stack Web Development with Next.js",
-  //     description:
-  //       "Build modern full-stack web applications with HTML, CSS, JavaScript, React, Next.js, Node.js, databases, authentication, testing, and deployment.",
-  //     icon: <CiClock1 />,
-  //     duration: "16 weeks",
-  //     format: "Online / Physical",
-  //     price: "₦430,000",
-  //     image: "/webmern.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-
-  //   {
-  //     id: 13,
-  //     name: "Software Development",
-  //     program: "Full-Stack Web Development with Django",
-  //     description:
-  //       "Create secure full-stack applications with Python, Django, REST APIs, React, databases, authentication, and deployment.",
-  //     icon: <CiClock1 />,
-  //     duration: "16 weeks",
-  //     format: "Online / Physical",
-  //     price: "₦430,000",
-  //     image: "/django.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-
-  //   {
-  //     id: 14,
-  //     name: "UI/UX & Product Design",
-  //     program: "Graphics Design",
-  //     description:
-  //       "Learn visual communication, branding, typography, layout, and digital design with practical portfolio projects.",
-  //     icon: <CiClock1 />,
-  //     duration: "12 weeks",
-  //     format: "Online / Physical",
-  //     price: "₦161,250",
-  //     image: "/graphic.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-
-  //   {
-  //     id: 15,
-  //     name: "Business & Productivity",
-  //     program: "Microsoft Office Specialist",
-  //     description:
-  //       "Build practical Word, Excel, PowerPoint, and productivity skills for office work and MOS certification readiness..",
-  //     icon: <CiClock1 />,
-  //     duration: "8 weeks",
-  //     format: "Online / Physical",
-  //     price: "₦107,500",
-  //     image: "/office.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-
-  //   {
-  //     id: 16,
-  //     name: "AI Automation",
-  //     program: "Business & Productivity",
-  //     description:
-  //       "Build practical Word, Excel, PowerPoint, and productivity skills for office work and MOS certification readiness..",
-  //     icon: <CiClock1 />,
-  //     duration: "8 weeks",
-  //     format: "Online / Physical",
-  //     price: "₦107,500",
-  //     image: "/Ai.jpg",
-  //     icon2: <IoArrowForward />,
-  //     view: "View programme",
-  //     title: "programms",
-  //   },
-  // ];
-
-  // Array of dropdown items
   const pathways = [
-    "All pathways ",
     "Business & Productivity",
-    "cloud & DevOps",
+    "Cloud & DevOps",
     "Cybersecurity",
     "Creative & Media",
     "Data Science & Analytics",
@@ -282,250 +25,301 @@ export default function Searchcourse() {
     "UI/UX & Product Design",
   ];
 
-  // Array of dropdown items
   const experiences = [
-    "All experiences levels",
     "Beginner-friendly",
     "Some experience",
     "Experienced learner",
   ];
 
   const formats = [
-    "All",
     "Physical class",
     "Online Virtual",
-    " Physical & Online virtual",
+    "Physical & Online virtual",
   ];
 
   const {
     register,
-    handleSubmit,
+    watch,
     formState: { errors },
-    reset,
-    //  getValues, // for checking password and confirm password
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      search: "",
+      pathway: "",
+      experience: "",
+      format: "",
+    },
+  });
 
-  const onSubmit = async (data) => {
-    try {
-      setLoading(true);
+  // Watch the search form values.
+  const searchTerm = watch("search");
+  const selectedPathway = watch("pathway");
+  const selectedExperience = watch("experience");
+  const selectedFormat = watch("format");
 
-      const payload = {
-        firstname: data.firstname,
-        lastname: data.lastname,
-        email: data.email,
-        mobile: data.mobile,
-        campus: data.campus,
-        course: data.course,
-        guidance: data.guidance,
-        messages: data.messages,
-        emailRole: "myself",
-      };
-      console.log("Payload:", payload);
-      const res = await axios.post("/api/email", payload);
+  // Filter programmes when a search field changes.
+  React.useEffect(() => {
+    const filtered = programmes.filter((programme) => {
+      const matchesSearch =
+        !searchTerm ||
+        `${programme.name} ${programme.program} ${programme.description}`
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
 
-      console.log("Status:", res.status);
-      console.log("Response:", res.data);
+      const matchesPathway =
+        !selectedPathway || programme.name === selectedPathway;
 
-      if (res.data.success || res.status == 200) {
-        router.push("/");
-        reset();
-      }
-    } catch (error) {
-      console.error(error.response?.data || error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+      const matchesExperience =
+        !selectedExperience ||
+        (selectedExperience === "Beginner-friendly"
+          ? true
+          : selectedExperience === "Some experience"
+            ? true
+            : true);
+
+      const matchesFormat =
+        !selectedFormat ||
+        programme.format
+          ?.toLowerCase()
+          .replace(/\s+/g, " ")
+          .includes(selectedFormat.toLowerCase().replace(/\s+/g, " "));
+
+      return (
+        matchesSearch &&
+        matchesPathway &&
+        matchesExperience &&
+        matchesFormat
+      );
+    });
+
+    setFilteredProgrammes(filtered);
+  }, [searchTerm, selectedPathway, selectedExperience, selectedFormat]);
+
+  const inputClass =
+    "w-full min-w-0 rounded-lg border-2 border-white/20 bg-blue-950 px-3 py-3 text-sm font-semibold text-white outline-none transition-colors placeholder:text-white/50 focus:border-blue-400 sm:px-4 sm:py-4 sm:text-base";
+
   return (
-    <>
-      <div className="w-full h-auto" id="search-course">
-        {/* Search Form */}
-        <div className="w-full h-auto bg-blue-800 py-2 ">
-          <form action="" onSubmit={handleSubmit(onSubmit)}>
-            <div className="w-[90%] h-auto py-2 mx-auto  flex justify-between items-center gap-4">
-              <div className="flex justify-center items-center gap-2 px-8">
-               
-                <input
-                  type="text"
-                  {...register("search", {
-                    required: "Please enter a search term",
-                  })}
-                  placeholder="Please enter a search term"
-                  className="w-[400px] h-auto outline-none py-4  bg-blue-950 text-white  font-bold border-2 px-2 rounded-lg  focus:border-blue-500
-                placeholder:text-xl placeholder:font-bold placeholder:text-white/40 placeholder:opacity-80focus:outline-none hover:outline-1 hover:border-2 hover:border-white/50"
-                />
+    <div className="h-auto w-full" id="search-course">
 
-                {errors.search && (
-                  <p className="text-red-500 text-sm">
-                    {errors.search.message}
-                  </p>
-                )}
-              </div>
+      {/* Search and filter section */}
+      <div className="h-auto w-full bg-blue-800 py-5 sm:py-7">
+        <form
+          onSubmit={(event) => event.preventDefault()}
+          className="mx-auto w-[92%] max-w-7xl"
+        >
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
 
-              <div>
-                <select
-                  id="pathway"
-                  {...register("pathway", {
-                    required: "Please Select-One a pathway",
-                  })}
-                  className="w-[240px] h-auto outline-none py-4  bg-blue-950 text-white font-bold border-2 px-2 rounded-lg  focus:border-blue-500
-                focus:outline-none hover:outline-1 hover:border-2 hover:border-white/50"
-                >
-                  <option value="">All pathways</option>
+            {/* Search input */}
+            <div className="min-w-0">
+              <input
+                type="search"
+                {...register("search")}
+                placeholder="Search programmes..."
+                aria-label="Search programmes"
+                className={inputClass}
+              />
 
-                  {pathways.map((path, index) => (
-                    <option
-                      key={index}
-                      value={path}
-                      className=" block mb-2 font-bold text-white"
-                    >
-                      {path}
-                    </option>
-                  ))}
-                </select>
-
-                {errors.pathway && (
-                  <p className="text-red-500 text-sm">
-                    {errors.pathway.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="flex justify-center items-center gap-2">
-                <select
-                  id="experience"
-                  {...register("experience", {
-                    required: "Please select a experience",
-                  })}
-                  className="w-[240px] h-auto outline-none py-4  bg-blue-950 text-white font-bold border-2 px-2 rounded-lg  focus:border-blue-500
-               focus:outline-none hover:outline-1 hover:border-2 hover:border-white/50"
-                >
-                  <option value="">All experiences levels</option>
-
-                  {experiences.map((experience, index) => (
-                    <option
-                      key={index}
-                      value={experience}
-                      className=" block mb-2 font-bold text-white"
-                    >
-                      {experience}
-                    </option>
-                  ))}
-                </select>
-
-                {errors.experience && (
-                  <p className="text-red-500 text-sm">
-                    {errors.experience.message}
-                  </p>
-                )}
-              </div>
-
-              <div>
-                <select
-                  id="format"
-                  {...register("format", {
-                    required: "Please select a format",
-                  })}
-                  className="w-[240px] h-auto outline-none py-4  bg-blue-950 text-white font-bold border-2 px-2 rounded-lg  focus:border-blue-500
-               focus:outline-none hover:outline-1 hover:border-2 hover:border-white/50"
-                >
-                  <option value="">Physical class</option>
-
-                  {formats.map((format, index) => (
-                    <option
-                      key={index}
-                      value={format}
-                      className=" block mb-2 font-bold text-white"
-                    >
-                      {format}
-                    </option>
-                  ))}
-                </select>
-
-                {errors.format && (
-                  <p className="text-red-500 text-sm">
-                    {errors.format.message}
-                  </p>
-                )}
-              </div>
+              {errors.search && (
+                <p className="mt-1 text-sm text-red-300">
+                  {errors.search.message}
+                </p>
+              )}
             </div>
-          </form>
-        </div>
 
-        {/* course cards */}
+            {/* Pathway filter */}
+            <div className="min-w-0">
+              <select
+                id="pathway"
+                {...register("pathway")}
+                className={inputClass}
+                aria-label="Filter by pathway"
+              >
+                <option value="">All pathways</option>
 
-        <div className="w-full h-auto bg-white py-8">
-          <div className="w-[90%] h-auto mx-auto">
-            <h2 className="text-xl font-semibold text-left px-4">
-              {" "}
-              programmes found
+                {pathways.map((path) => (
+                  <option key={path} value={path} className="text-black">
+                    {path}
+                  </option>
+                ))}
+              </select>
+
+              {errors.pathway && (
+                <p className="mt-1 text-sm text-red-300">
+                  {errors.pathway.message}
+                </p>
+              )}
+            </div>
+
+            {/* Experience filter */}
+            <div className="min-w-0">
+              <select
+                id="experience"
+                {...register("experience")}
+                className={inputClass}
+                aria-label="Filter by experience level"
+              >
+                <option value="">All experience levels</option>
+
+                {experiences.map((experience) => (
+                  <option
+                    key={experience}
+                    value={experience}
+                    className="text-black"
+                  >
+                    {experience}
+                  </option>
+                ))}
+              </select>
+
+              {errors.experience && (
+                <p className="mt-1 text-sm text-red-300">
+                  {errors.experience.message}
+                </p>
+              )}
+            </div>
+
+            {/* Class format filter */}
+            <div className="min-w-0">
+              <select
+                id="format"
+                {...register("format")}
+                className={inputClass}
+                aria-label="Filter by class format"
+              >
+                <option value="">All class formats</option>
+
+                {formats.map((format) => (
+                  <option
+                    key={format}
+                    value={format}
+                    className="text-black"
+                  >
+                    {format}
+                  </option>
+                ))}
+              </select>
+
+              {errors.format && (
+                <p className="mt-1 text-sm text-red-300">
+                  {errors.format.message}
+                </p>
+              )}
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+      {/* Programme cards section */}
+      <div className="h-auto w-full bg-white py-8 sm:py-10 lg:py-12">
+        <div className="mx-auto h-auto w-[92%] max-w-7xl">
+
+          {/* Results heading */}
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <h2 className="px-1 text-xl font-semibold text-blue-950 sm:text-2xl">
+              Programmes found
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-8">
-              {programmes.map((programme) => (
+            <p className="px-1 text-sm text-gray-500">
+              {filteredProgrammes.length}{" "}
+              {filteredProgrammes.length === 1 ? "programme" : "programmes"}
+            </p>
+          </div>
+
+          {/* Responsive grid */}
+          {filteredProgrammes.length > 0 ? (
+            <div className="grid grid-cols-1 gap-6 py-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 sm:gap-5 lg:gap-7">
+
+              {filteredProgrammes.map((programme) => (
                 <div
                   key={programme.id}
-                  className=" w-[340px] h-autobg-white mx-auto transform transition-transform duration-300 ease-in-out hover:scale-105 rounded-lg shadow-md  overflow-hidden"
+                  className="flex h-full min-w-0 flex-col overflow-hidden rounded-xl bg-white shadow-md transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl"
                 >
-                  <div>
+                  {/* Programme image */}
+                  <div className="relative h-[200px] w-full sm:h-[210px] lg:h-[220px]">
                     <Image
                       src={programme.image}
-                      width={300}
-                      height={300}
-                      alt={programme.title}
-                      className="w-full h-[200px] object-cover"
+                      alt={programme.program || programme.name}
+                      fill
+                      sizes="(max-width: 639px) 92vw, (max-width: 1023px) 45vw, 30vw"
+                      className="object-cover"
                     />
                   </div>
 
-                  <div className="p-4">
-                    <div className="py-2">
-                      <span className="font-bold text-lg text-blue-900">
+                  {/* Programme details */}
+                  <div className="flex flex-1 flex-col p-4 sm:p-5">
+
+                    <div className="mb-2">
+                      <span className="text-sm font-bold text-blue-900 sm:text-base">
                         {programme.name}
                       </span>
                     </div>
 
-                    <div className="py-2">
-                      <p className="text-black text-xl">{programme.program}</p>
-                    </div>
+                    <h3 className="mb-3 text-lg font-semibold leading-snug text-gray-900 sm:text-xl">
+                      {programme.program}
+                    </h3>
 
-                    <div className="py-2">
-                      <p className="text-black/70">{programme.description}</p>
-                    </div>
+                    <p className="mb-4 flex-1 text-sm leading-6 text-gray-600 sm:text-base">
+                      {programme.description}
+                    </p>
 
-                    <div className="flex justify-stretch items-center gap-4 py-2">
-                      <div className="flex justify-between items-center gap-4">
-                        <span className="text-xl">{programme.icon}</span>
-                        <span className="text-sm text-bold">
+                    {/* Duration and class format */}
+                    <div className="flex flex-col gap-3 border-t border-gray-100 py-4 sm:flex-row sm:items-start sm:justify-between">
+
+                      <div className="flex min-w-0 items-center gap-2 text-gray-700">
+                        <span className="shrink-0 text-xl text-blue-900">
+                          {programme.icon || <CiClock1 />}
+                        </span>
+
+                        <span className="text-sm font-medium">
                           {programme.duration}
                         </span>
                       </div>
 
-                      <div>
-                        <span className="text-sm text-bold">
-                          {programme.format}
-                        </span>
-                      </div>
+                      <span className="text-sm leading-5 text-gray-600 sm:max-w-[55%] sm:text-right">
+                        {programme.format}
+                      </span>
                     </div>
 
-                    <div className="flex justify-between items-center gap-4 py-2">
-                      <span className="text-2xl text-extrabold">
+                    {/* Price and programme link */}
+                    <div className="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-4">
+
+                      <span className="text-xl font-extrabold text-gray-900 sm:text-2xl">
                         {programme.price}
                       </span>
 
-                      <div className="flex justify-between items-center gap-2 font-bold text-sm text-blue-900 cursor-pointer">
-                        <Link href={`/courses/${programme.id}`}>
-                        {programme.view}
-                        </Link>
-                        <span>{programme.icon2}</span>
-                      </div>
+                      <Link
+                        href={`/courses/${programme.id}`}
+                        className="inline-flex items-center gap-2 rounded-md font-bold text-blue-900 transition-colors hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                      >
+                        <span className="text-sm">
+                          {programme.view || "View programme"}
+                        </span>
+
+                        <span className="text-lg">
+                          {programme.icon2 || <IoArrowForward />}
+                        </span>
+                      </Link>
+
                     </div>
                   </div>
                 </div>
               ))}
+
             </div>
-          </div>
+          ) : (
+            <div className="py-16 text-center">
+              <h3 className="text-xl font-semibold text-gray-800">
+                No programmes found
+              </h3>
+
+              <p className="mt-2 text-sm leading-6 text-gray-500">
+                Try changing your search term or selecting different filters.
+              </p>
+            </div>
+          )}
+
         </div>
       </div>
-    </>
+    </div>
   );
 }
