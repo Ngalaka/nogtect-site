@@ -91,7 +91,7 @@ export default function About() {
         {/* RIGHT SIDE: CEO Image */}
         <div className="flex w-full flex-col items-center lg:w-[40%]">
           <Image
-            src="/ceo.jpeg"
+            src="/ceopic.jpeg"
             alt="CEO Photo"
             width={500}
             height={500}
