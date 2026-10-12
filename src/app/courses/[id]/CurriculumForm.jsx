@@ -26,35 +26,33 @@ export default function CurriculumForm({ courseId, courseName, courseTitle }) {
 
   // This function runs when the form is valid.
   const onSubmit = async (data) => {
-    setLoading(true);
-    setMessage("");
-    setErrorMessage("");
-
     try {
-      // Send the form data and selected course to the API.
-      //   const response = await axios.post("/api/curriculum", {
-      //     courseId,
-      //     courseName,
-      //     name: data.name,
-      //     email: data.email,
-      //     question: data.question,
-      //   });
+      setLoading(true);
+      setMessage("");
+      setErrorMessage("");
+      const payload = {
+        firstname: data.firstname,
+        lastname: data.lastname,
+        email: data.email,
+        mobile: data.mobile,
+        questions: data.questions,
+        // emailRole: "myself",
+      };
 
-      // Show a success message.
-      setMessage(
-        response.data.message || "Your enquiry was submitted successfully.",
-      );
+      console.log("Payload:", payload);
 
-      // Clear the form after a successful submission.
-      reset();
+      const res = await axios.post("/api/questions", payload);
+
+      console.log("Status:", res.status);
+      console.log("Response:", res.data);
+
+      if (res.data.success || res.status === 200) {
+        reset();
+       router.refresh();
+      }
     } catch (error) {
-      // Show a useful error if the request fails.
-      setErrorMessage(
-        error.response?.data?.message ||
-          "Unable to submit your enquiry. Please try again.",
-      );
+      console.error(error.response?.data || error.message);
     } finally {
-      // Stop the loading state whether the request succeeds or fails.
       setLoading(false);
     }
   };
@@ -260,15 +258,15 @@ export default function CurriculumForm({ courseId, courseName, courseTitle }) {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex w-full items-center justify-center gap-3 rounded-lg bg-red-800 px-4 py-3 text-center font-extrabold text-white transition-colors hover:bg-red-900 disabled:cursor-not-allowed disabled:opacity-60 sm:mx-auto sm:max-w-md"
+                    className={`w-full sm:w-auto sm:min-w-[280px] lg:w-[400px] min-h-12 px-5 py-3 flex justify-center items-center gap-3 rounded-lg text-white font-extrabold transition-colors ${
+                      loading
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-red-800 hover:bg-blue-700 cursor-pointer"
+                    }`}
                   >
-                    <FaRegEnvelope size={20} />
+                    {loading ? "Submitting..." : "Email me the programme guide"}
 
-                    <span>
-                      {loading
-                        ? "Submitting..."
-                        : "Email me the programme guide"}
-                    </span>
+                    <FaRegEnvelope size={20} />
                   </button>
                 </div>
               </form>

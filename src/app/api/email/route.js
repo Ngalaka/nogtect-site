@@ -16,10 +16,10 @@ export const POST = async (req) => {
       learners,
       timeline,
       messages,
-      emailType,
+       emailRole,
     } = await req.json();
 
-    console.log(firstname, lastname, email, mobile, campus, course, guidance,  organisation, learners, timeline, messages, emailType);
+    console.log(firstname, lastname, email, mobile, campus, course, guidance,  organisation, learners, timeline, messages,  emailRole);
 
     // Validate required fields
     if (!firstname || !lastname || !email || !mobile || !campus || !course ||  !messages) {
@@ -36,14 +36,14 @@ export const POST = async (req) => {
     await connectToDb();
 
     // Check if email already exists
-    const existingEmail = await Email.findOne({ email });
+    // const existingEmail = await Email.findOne({ email });
 
-    if (existingEmail) {
-      return Response.json(
-        { error: "Email already exists" },
-        { status: 400 }
-      );
-    }
+    // if (existingEmail) {
+    //   return Response.json(
+    //     { error: "Email already exists" },
+    //     { status: 400 }
+    //   );
+    // }
 
     // Create new email record
     const newEmail = await Email.create({
@@ -58,7 +58,7 @@ export const POST = async (req) => {
       learners,
       timeline,
       messages,
-      emailRole: emailType || "myself",
+      emailRole:  emailRole || "myself",
     });
 
     // Check if creation failed
