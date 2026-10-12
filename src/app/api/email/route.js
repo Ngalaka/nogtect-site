@@ -86,3 +86,29 @@ export const POST = async (req) => {
     );
   }
 };
+
+
+
+
+
+
+// GET request handler to fetch all properties from the database
+export const GET = async (req, res) => {
+
+
+    try {
+        await connectToDb();
+
+        // fetch all properties with status "approved", 
+        // populate the listedBy field with the user's first name and 
+        // email, and sort by creation date in descending order
+        const emailMessage = await Email.find()
+            .sort({ createdAt: -1 })
+        return Response.json({ emailMessage }, { status: 200 });
+    } 
+
+    catch (error) {
+        console.error("Error fetching email:", error);
+        return Response.json({ message: "Failed to fetch properties" }, { status: 500 });
+     }
+}

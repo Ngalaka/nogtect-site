@@ -7,6 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaRegEnvelope } from "react-icons/fa6";
 import React from "react";
+
+
 export default function CurriculumForm({ courseId, courseName, courseTitle }) {
   // Track whether the form is being submitted.
   const [loading, setLoading] = useState(false);
@@ -48,7 +50,6 @@ export default function CurriculumForm({ courseId, courseName, courseTitle }) {
 
       if (res.data.success || res.status === 200) {
         reset();
-       router.refresh();
       }
     } catch (error) {
       console.error(error.response?.data || error.message);
@@ -201,11 +202,15 @@ export default function CurriculumForm({ courseId, courseName, courseTitle }) {
 
                   <input
                     type="tel"
-                    id="phone"
-                    autoComplete="tel"
-                    placeholder="+234 800 000 0000"
-                    className="w-full min-w-0 rounded-lg border border-black/30 bg-white px-3 py-2 text-gray-900 outline-none transition-all duration-200 ease-in-out placeholder:text-gray-400 hover:border-black/50 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 dark:bg-gray-900 dark:text-white dark:placeholder:text-gray-500"
+                    {...register("mobile")}
+                    className="w-full min-w-0 rounded-lg border border-black/30 bg-white px-3 py-2 text-gray-900 outline-none focus:border-blue-600"
                   />
+
+                  {errors.mobile && (
+                    <p className="mt-1 text-sm text-red-600">
+                      {errors.mobile.message}
+                    </p>
+                  )}
                 </div>
 
                 {/* Question about the selected course */}
@@ -218,7 +223,7 @@ export default function CurriculumForm({ courseId, courseName, courseTitle }) {
                     id="question"
                     rows={5}
                     placeholder="Ask us anything about this programme..."
-                    {...register("question", {
+                    {...register("questions", {
                       required: "Please enter your question",
                       minLength: {
                         value: 10,

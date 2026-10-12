@@ -1,4 +1,5 @@
 import Questions from "@/app/models/questionsModel";
+import connectToDb from "@/lib/connection";
 
 export const POST = async (req) => {
   try {
