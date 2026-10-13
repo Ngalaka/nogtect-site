@@ -86,7 +86,7 @@ return <p className="p-4">Loading email messages...</p>;
 
   return (
     <>
-      <div className="bg-[#f7f2ec] h-auto p-2">
+      <div className="w-full h-auto p-2">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
           <h1 className="text-3xl text-black font-black">Email Receive</h1>
           <p className="text-gray-500">
@@ -104,23 +104,22 @@ return <p className="p-4">Loading email messages...</p>;
                        No listed myself Email message
                     </p>
                 ) : (
-      <div className="overflow-x-auto rounded-lg border border-gray-200">     
+      <div className="">     
         <table className="w-full min-w-[1400px] border-collapse text-left text-sm">
           {/* Table headings */}
-          <thead className="bg-gray-100  text-gray-700">
+          <thead className=" w-full py-2  text-gray-700">
             <tr>
-              <th className="border-b p-3 text-sm">S/N</th>
-
-              <th className="border-b p-3">First Name</th>
-              <th className="border-b p-3">Last Name</th>
-              <th className="border-b p-3">Email</th>
-              <th className="border-b p-3">Mobile</th>
-              <th className="border-b p-3">Campus</th>
-              <th className="border-b p-3">Courses</th>
-              <th className="border-b p-3">Guidance</th>
-              <th className="border-b p-3">Message</th>
-              <th className="border-b p-3">Email Role</th>
-              <th className="border-b p-3">Date Submitted</th>
+              <th className="px-2 text-center">S/N</th>
+              <th className="px-2 text-center">First Name</th>
+              <th className="px-2 text-center">Last Name</th>
+              <th className="px-2 text-center">Email</th>
+              <th className="px-2 text-center">Mobile</th>
+              <th className="px-2 text-center">Campus</th>
+              <th className="px-2 text-center">Courses</th>
+              <th className="px-2 text-center">Guidance</th>
+              <th className="px-2 text-center">Message</th>
+              <th className="px-2 text-center">Email Role</th>
+              <th className="px-2 text-center">Date Submitted</th>
             </tr>
           </thead>
 
@@ -129,20 +128,20 @@ return <p className="p-4">Loading email messages...</p>;
             filteredEmail.length > 0 ? (
             filteredEmail.map((email, index) => (
               <tr key={email._id} className="hover:bg-gray-50">
-                <td className="border-b p-3"> {index + 1} </td>
-                <td className="border-b p-3"> {email.firstname} </td>
-                <td className="border-b p-3"> {email.lastname} </td>
-                <td className="border-b p-3"> {email.email} </td>
-                <td className="border-b p-3"> {email.mobile} </td> 
-                <td className="border-b p-3"> {email.campus} </td> 
-                <td className="border-b p-3"> {email.course} </td>
-                <td className="border-b p-3"> {email.guidance} </td>
-                <td className="border-b p-3"> {email.messages || "N/A"} </td> 
-                <td className="border-b p-3"> {email.emailRole || "N/A"} </td>
-                <td className="border-b p-3">
+                <td className=""> {index + 1} </td>
+                <td className=""> {email.firstname} </td>
+                <td className=""> {email.lastname} </td>
+                <td className=""> {email.email} </td>
+                <td className=""> {email.mobile} </td> 
+                <td className=""> {email.campus} </td> 
+                <td className=""> {email.course} </td>
+                <td className=""> {email.guidance} </td>
+                <td className=""> {email.messages || "N/A"} </td> 
+                <td className=""> {email.emailRole || "N/A"} </td>
+                <td className="">
                 {email.createdAt ? new Date( email.createdAt ).toLocaleString() : "N/A"}
                 </td>
-                  <td className="border p-3">
+                  <td className=" p-3">
                     <button
                       type="button"
                       onClick={() => handleDelete(email._id)}
