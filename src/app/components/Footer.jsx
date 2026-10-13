@@ -33,13 +33,14 @@ export default function Footer() {
                 {/* phone number */}
                 <div className='flex items-center gap-2 cursor-pointer'>
                   <span className="text-xl text-blue-900"><FiPhoneIncoming /></span>
-                  <p>+234 7059743120</p>
+                  <p>+234 7039306184</p>
+                  <p>+234 9159533474</p>
                 </div>
 
                 {/* email */}
                 <div className='flex items-center gap-2 cursor-pointer'>
                   <span className="text-xl text-blue-900"><AiTwotoneMail /></span>
-                  <p className="text-blue-900">hello@lagosusedcars.ng</p>
+                  <p className="text-blue-900"> nogtech.traininginstitute@gmail.com</p>
                 </div>
               </div>
             </div>
