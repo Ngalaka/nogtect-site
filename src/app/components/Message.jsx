@@ -79,7 +79,7 @@ export default function Message() {
 
   // Shared responsive styling
   const inputClass =
-    "block w-full min-w-0 rounded-md border-2 border-transparent bg-blue-950 px-3 py-3 font-bold text-white outline-none transition-colors focus:border-orange-800";
+    "block w-full min-w-0 rounded-md border-2 border-transparent bg-white px-3 py-3 font-bold text-black outline-none transition-colors focus:border-orange-800";
 
   const labelClass =
     "mb-2 block text-sm font-bold text-white sm:text-base";

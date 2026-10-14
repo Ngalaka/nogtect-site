@@ -79,7 +79,7 @@ export default function Email() {
 
   // Shared responsive input styling
   const inputClass =
-    "w-full min-w-0 h-auto outline-none py-3 bg-blue-950 text-white font-bold px-3 border-2 border-transparent rounded-md focus:border-orange-800 transition-colors";
+    "w-full min-w-0 h-auto outline-none py-3 bg-white text-black font-bold px-3 border-2 border-transparent rounded-md focus:border-orange-800 transition-colors";
 
   const labelClass = "block mb-2 font-bold text-white text-sm sm:text-base";
 
