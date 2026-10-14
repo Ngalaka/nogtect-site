@@ -1,4 +1,5 @@
 import Email from "@/app/models/emailModel";
+import { requireAdmin } from "@/lib/admin-auth";
 import connectToDb from "@/lib/connection";
 
 export const POST = async (req) => {
@@ -90,25 +91,39 @@ export const POST = async (req) => {
 
 
 
+// Get request
 
+export const GET = async () => {
+  try {
+    // Step 1: Verify that the requester is an admin
+    const admin = await requireAdmin();
 
-// GET request handler to fetch all properties from the database
-export const GET = async (req, res) => {
+    if (!admin) {
+      return Response.json(
+        { message: "Unauthorized. Admin login required." },
+        { status: 401 }
+      ); 
+    }
 
+    // Step 2: Connect to MongoDB
+    await connectToDb();
 
-    try {
-        await connectToDb();
+    // Step 3: Fetch email records, newest first
+    const emailmessage = await Email.find().sort({
+      createdAt: -1,
+    });
 
-        // fetch all properties with status "approved", 
-        // populate the listedBy field with the user's first name and 
-        // email, and sort by creation date in descending order
-        const emailmessage = await Email.find()
-            .sort({ createdAt: -1 })
-        return Response.json({ emailmessage }, { status: 200 });
-    } 
+    // Step 4: Return the records
+    return Response.json(
+      { emailmessage },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error fetching email:", error);
 
-    catch (error) {
-        console.error("Error fetching email:", error);
-        return Response.json({ message: "Failed to fetch email" }, { status: 500 });
-     }
-}
+    return Response.json(
+      { message: "Failed to fetch email." },
+      { status: 500 }
+    );
+  }
+};

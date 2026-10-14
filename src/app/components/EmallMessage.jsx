@@ -16,7 +16,10 @@ const [success, setSuccess] = useState("");
     const fetchEmailmessage = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("/api/email");
+        const res = await axios.get("/api/email", {
+      withCredentials: true,
+    }); 
+      
 
         console.log("fetched data", res.data);
         setData(res.data);

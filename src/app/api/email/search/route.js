@@ -5,6 +5,13 @@ import Email from "@/app/models/emailModel";
 // GET: Search email records in MongoDB
 export async function GET(req) {
   try {
+
+     const admin = await requireAdmin();
+
+    if (!admin) {
+      return Response.json({ message: "Unauthorized" },{ status: 401 });
+    }
+
     // 1. Connect to MongoDB
     await connectToDb();
 

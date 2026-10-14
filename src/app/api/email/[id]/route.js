@@ -3,6 +3,15 @@ import connectToDb from "@/lib/connection";
 import mongoose from "mongoose";
 export async function DELETE(req, { params }) {
   try {
+
+     const admin = await requireAdmin();
+
+    if (!admin) {
+      return Response.json(
+        { message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
     // 1. Connect to MongoDB
      await connectToDb();
 
