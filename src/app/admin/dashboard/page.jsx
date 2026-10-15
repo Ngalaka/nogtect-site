@@ -12,6 +12,8 @@ export default function AdminDashboard() {
   const [error, setError] = useState("");
   const [adminEmail, setAdminEmail] = useState("");
 
+
+  
   const fetchRecords = useCallback(async (keyword = "") => {
     try {
       setLoading(true);
@@ -34,8 +36,9 @@ export default function AdminDashboard() {
     } finally {
       setLoading(false);
     }
-  }, [router]);
+  }, [router])
 
+  
   useEffect(() => {
     let active = true;
 
@@ -71,7 +74,8 @@ export default function AdminDashboard() {
 
     if (!confirmed) return;
 
-    try {
+    
+     try {
       await axios.delete(`/api/admin/email/${id}`);
 
       setRecords((current) =>
@@ -143,6 +147,7 @@ export default function AdminDashboard() {
       router.refresh();
     }
   }
+
 
   return (
     <>

@@ -1,5 +1,4 @@
 import Email from "@/app/models/emailModel";
-import { requireAdmin } from "@/lib/admin-auth";
 import connectToDb from "@/lib/connection";
 
 export const POST = async (req) => {

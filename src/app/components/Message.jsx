@@ -61,7 +61,7 @@ export default function Message() {
 
       console.log("Payload:", payload);
 
-      const res = await axios.post("/api/email", payload);
+      const res = await axios.post("/api/admin/email", payload);
 
       console.log("Status:", res.status);
       console.log("Response:", res.data);
