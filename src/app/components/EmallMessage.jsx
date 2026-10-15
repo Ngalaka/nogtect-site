@@ -16,7 +16,7 @@ const [success, setSuccess] = useState("");
     const fetchEmailmessage = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("/api/email", {
+        const res = await axios.get("/api/admin/email", {
       withCredentials: true,
     }); 
       
@@ -38,48 +38,43 @@ const [success, setSuccess] = useState("");
   // delete 
 
   // Delete one email message
+
 const handleDelete = async (id) => {
-const confirmed = window.confirm(
-"Are you sure you want to delete this email message?"
-);
-
-if (!confirmed) return;
-
-try {
   setDeletingId(id);
   setError("");
   setSuccess("");
 
-  // Send DELETE request to the API
- const res = await axios.delete(`/api/email/${id}`);
+  try {
+    const res = await axios.delete(
+      `/api/admin/email/${id}`,
+      { withCredentials: true }
+    );
 
-  // Remove the deleted message from the nested array
-  setData((previousData) => ({
-    ...previousData,
-    emailmessage: Array.isArray(previousData.emailmessage)
-      ? previousData.emailmessage.filter(
-          (message) => message._id !== id
-        )
-      : [],
-  }));
+    setData((previousData) => ({
+      ...previousData,
+      emailmessage: Array.isArray(previousData.emailmessage)
+        ? previousData.emailmessage.filter(
+            (message) => String(message._id) !== String(id)
+          )
+        : [],
+    }));
 
-  setSuccess(
-    res.data.message || "Email message deleted successfully."
-  );
-} catch (error) {
-  console.error(
-    "Delete error:",
-    error.response?.data || error.message
-  );
+    setSuccess(
+      res.data.message || "Email message deleted successfully."
+    );
+  } catch (error) {
+    console.error(
+      "Delete error:",
+      error.response?.data || error.message
+    );
 
-  setError(
-    error.response?.data?.message ||
-      "Unable to delete this email message."
-  );
-} finally {
-  setDeletingId(null);
-}
-
+    setError(
+      error.response?.data?.message ||
+        "Unable to delete this email message."
+    );
+  } finally {
+    setDeletingId(null);
+  }
 };
 
 if (loading) {

@@ -3,8 +3,10 @@ import React from 'react'
 
 export default function page() {
   return (
-    <div>
-        <EmallMessage/>
-    </div>
+    <>
+     <div>
+            <EmallMessage/>
+        </div>
+    </>
   )
 }

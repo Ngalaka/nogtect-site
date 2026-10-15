@@ -57,4 +57,4 @@ export async function GET(req) {
     // 8. Handle server errors
     return Response.json({ message: "Failed to search email records." },{ status: 500 });
   }
-}
+} 
