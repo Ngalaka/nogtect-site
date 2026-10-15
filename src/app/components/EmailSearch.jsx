@@ -36,7 +36,7 @@ export default function EmailSearch() {
       setEmailmessage([]);
 
       // Send the search request to the Next.js API
-      const res = await axios.get("/api/email/search", {
+      const res = await axios.get("/api/admin/email/search", {
         params: { q: query },
       });
 

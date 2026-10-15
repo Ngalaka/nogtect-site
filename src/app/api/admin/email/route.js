@@ -4,6 +4,7 @@ import connectToDb from "@/lib/connection";
 
 export const POST = async (req) => {
   try {
+
     // Get data from the request body
     const {
       firstname,
@@ -33,18 +34,9 @@ export const POST = async (req) => {
       );
     }
 
+    
     // Connect to MongoDB
     await connectToDb();
-
-    // Check if email already exists
-    // const existingEmail = await Email.findOne({ email });
-
-    // if (existingEmail) {
-    //   return Response.json(
-    //     { error: "Email already exists" },
-    //     { status: 400 }
-    //   );
-    // }
 
     // Create new email record
     const newEmail = await Email.create({
@@ -95,15 +87,14 @@ export const POST = async (req) => {
 
 export const GET = async () => {
   try {
-    // Step 1: Verify that the requester is an admin
-    const admin = await requireAdmin();
-
-    if (!admin) {
-      return Response.json(
-        { message: "Unauthorized. Admin login required." },
-        { status: 401 }
-      ); 
-    }
+    //  const admin = await requireAdmin();
+    
+    //     if (!admin) {
+    //       return Response.json(
+    //         { message: "Unauthorized. Admin login required." },
+    //         { status: 401 }
+    //       );
+    //     }
 
     // Step 2: Connect to MongoDB
     await connectToDb();

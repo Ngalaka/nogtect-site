@@ -2,36 +2,77 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 export default function EmallMessage() {
   const [data, setData] = useState({ emailmessage: [] });
   const [loading, setLoading] = useState(true);
 
-
+// 
 const [deletingId, setDeletingId] = useState(null);
 const [error, setError] = useState("");
 const [success, setSuccess] = useState("");
 
+const router = useRouter();
+ 
+useEffect(() => {
+  let active = true;
 
-  useEffect(() => {
-    const fetchEmailmessage = async () => {
-      try {
-        setLoading(true);
-        const res = await axios.get("/api/admin/email", {
-      withCredentials: true,
-    }); 
-      
+  const fetchEmailmessage = async () => {
+    try {
+      setLoading(true);
+      setError("");
 
-        console.log("fetched data", res.data);
-        setData(res.data);
-      } catch (error) {
-        console.error("Error fetching emailmessage:", error);
-      } finally {
-        setLoading(false);
+      // Step 1: Verify the administrator's session
+      await axios.get("/api/admin/me", {
+        withCredentials: true,
+      });
+
+      if (!active) return;
+
+      // Step 2: Fetch email messages only after verification
+      const res = await axios.get("/api/admin/email", {
+        withCredentials: true,
+      });
+
+      if (!active) return;
+
+      console.log("Fetched data:", res.data);
+
+      // Support either response property name
+      const messages =
+        res.data.emailmessage ??
+        res.data.emailMessage ??
+        [];
+
+      setData({ emailmessage: messages });
+    } catch (error) {
+      if (!active) return;
+
+      if (error.response?.status === 401) {
+        router.replace("/admin/login");
+        return;
       }
-    };
-    fetchEmailmessage();
-  }, []);
 
+      setError(
+        "Unable to load email messages. Please try again."
+      );
+      console.error(
+        "Error fetching email messages:",
+        error.response?.data || error.message
+      );
+    } finally {
+      if (active) setLoading(false);
+    }
+  };
+
+  fetchEmailmessage();
+
+  return () => {
+    active = false;
+  };
+}, [router]);
+
+// array 
   const filteredEmail = data?.emailmessage;
 
 
