@@ -1,47 +1,68 @@
-
-import Email from "@/app/models/emailModel";
-import connectToDb from "@/lib/connection";
+import { Response } from "next/server";
 import mongoose from "mongoose";
+import connectToDb from "@/lib/connection";
+import Email from "@/app/models/emailModel";
+import { requireAdmin } from "@/lib/admin-auth";
+
 export async function DELETE(req, { params }) {
   try {
-    // 2. Connect to MongoDB.
-    await connectToDb();
+    // 1. Verify the administrator's session.
+    const admin = await requireAdmin();
 
-    // 3. Get the ID from the dynamic route.
+    if (!admin) {
+      return Response.json(
+        {
+          success: false,
+          message: "Unauthorized. Please log in.",
+        },
+        { status: 401 }
+      );
+    }
+
+    // 2. Read and validate the record ID.
     const { id } = await params;
 
-    // 4. Validate the MongoDB document ID.
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return Response.json(
-        { message: "Invalid record ID" },
+    if (!mongoose.isValidObjectId(id)) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Invalid email record ID.",
+        },
         { status: 400 }
       );
     }
 
-    // 5. Delete the selected email record.
-    const deletedMessage = await Email.findByIdAndDelete(id);
+    // 3. Connect to MongoDB.
+    await connectToDb();
 
-    // 6. Check whether the record existed.
-    if (!deletedMessage) {
+    // 4. Delete only the record matching this ID.
+    const deletedEmail = await Email.findByIdAndDelete(id);
+
+    // 5. Handle a record that does not exist.
+    if (!deletedEmail) {
       return Response.json(
-        { message: "Record not found" },
+        {
+          success: false,
+          message: "Email record not found.",
+        },
         { status: 404 }
       );
     }
 
-    // 7. Return the successful result.
-    return Response.json(
-      {
-        message: "Email message deleted successfully.",
-        emailmessage: deletedMessage,
-      },
-      { status: 200 }
-    );
+    // 6. Confirm successful deletion.
+    return Response.json({
+      success: true,
+      message: "Email record deleted successfully.",
+      id: deletedEmail._id.toString(),
+    });
   } catch (error) {
-    console.error("Delete API error:", error);
+    console.error("DELETE /api/admin/email/[id] error:", error);
 
     return Response.json(
-      { message: "Failed to delete record" },
+      {
+        success: false,
+        message: "Unable to delete the email record.",
+      },
       { status: 500 }
     );
   }

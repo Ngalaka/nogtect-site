@@ -1,5 +1,9 @@
-import Email from "@/app/models/emailModel";
+
 import connectToDb from "@/lib/connection";
+import Email from "@/app/models/emailModel";
+import { requireAdmin } from "@/lib/admin-auth";
+
+
 
 export const POST = async (req) => {
   try {
@@ -84,36 +88,68 @@ export const POST = async (req) => {
 
 // Get request
 
-export const GET = async () => {
+export const GET = async (request) => {
   try {
-    //  const admin = await requireAdmin();
     
-    //     if (!admin) {
-    //       return Response.json(
-    //         { message: "Unauthorized. Admin login required." },
-    //         { status: 401 }
-    //       );
-    //     }
+     // 1. Verify the administrator's session.
+    const admin = await requireAdmin();
 
-    // Step 2: Connect to MongoDB
+    if (!admin) {
+      return Response.json(
+        {
+          success: false,
+          message: "Unauthorized. Please log in.",
+        },
+        { status: 401 }
+      );
+    }
+
+// 2. Connect to MongoDB only after authentication.
     await connectToDb();
 
-    // Step 3: Fetch email records, newest first
-    const emailmessage = await Email.find().sort({
-      createdAt: -1,
+    // 3. Read the optional search keyword.
+    const { searchParams } = new URL(request.url);
+    const keyword = searchParams.get("search")?.trim();
+
+    // 4. Build the database query.
+    const query = {};
+
+    if (keyword) {
+      const escapedKeyword = keyword.replace(
+        /[.*+?^${}()|[\]\\]/g,
+        "\\$&"
+      );
+
+      const searchRegex = new RegExp(escapedKeyword, "i");
+
+      query.$or = [
+        { firstname: searchRegex },
+        { lastname: searchRegex },
+        { email: searchRegex },
+        { course: searchRegex },
+        { campus: searchRegex },
+      ];
+    }
+
+    // 5. Fetch the matching records.
+    const emailmessage = await Email.find(query)
+      .sort({ createdAt: -1 })
+      .lean();
+
+    // 6. Return the records to the authorized client.
+    return Response.json({
+      success: true,
+      emailmessage,
     });
-
-    // Step 4: Return the records
-    return Response.json(
-      { emailmessage },
-      { status: 200 }
-    );
   } catch (error) {
-    console.error("Error fetching email:", error);
+    console.error("GET /api/admin/email error:", error);
 
     return Response.json(
-      { message: "Failed to fetch email." },
+      {
+        success: false,
+        message: "Unable to fetch email messages.",
+      },
       { status: 500 }
     );
   }
-};
+}

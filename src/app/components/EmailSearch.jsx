@@ -1,4 +1,3 @@
-
 "use client";
 import { useState } from "react";
 import axios from "axios";
@@ -40,6 +39,11 @@ export default function EmailSearch() {
         params: { q: query },
       });
 
+      // const res = await axios.get("/api/admin/email", {
+      //   params: keyword?.trim() ? { search: keyword.trim() } : {},
+      //   withCredentials: true,
+      // });
+
       // Save the matching records in React state
       setEmailmessage(res.data.emailmessage ?? []);
     } catch (error) {
@@ -47,7 +51,7 @@ export default function EmailSearch() {
 
       setError(
         error.response?.data?.message ||
-          "Unable to search records. Please try again."
+          "Unable to search records. Please try again.",
       );
     } finally {
       // Stop the loading indicator
@@ -65,9 +69,7 @@ export default function EmailSearch() {
 
   return (
     <section className="mx-auto w-full max-w-7xl p-4">
-      <h1 className="mb-2 text-2xl font-bold">
-        Search Email Messages
-      </h1>
+      <h1 className="mb-2 text-2xl font-bold">Search Email Messages</h1>
 
       <p className="mb-5 text-gray-600">
         Search registration and enquiry records from MongoDB.
@@ -107,11 +109,7 @@ export default function EmailSearch() {
       </form>
 
       {/* Loading message */}
-      {loading && (
-        <p className="mb-4 text-blue-600">
-          Searching records...
-        </p>
-      )}
+      {loading && <p className="mb-4 text-blue-600">Searching records...</p>}
 
       {/* Error message */}
       {error && (
@@ -144,33 +142,19 @@ export default function EmailSearch() {
               <tbody>
                 {emailmessage.map((search, index) => (
                   <tr key={search._id} className="hover:bg-gray-50">
-                    <td className="border-b p-3">
-                      {index + 1}
-                    </td>
+                    <td className="border-b p-3">{index + 1}</td>
 
-                    <td className="border-b p-3">
-                      {search.firstname || "-"}
-                    </td>
+                    <td className="border-b p-3">{search.firstname || "-"}</td>
 
-                    <td className="border-b p-3">
-                      {search.lastname || "-"}
-                    </td>
+                    <td className="border-b p-3">{search.lastname || "-"}</td>
 
-                    <td className="border-b p-3">
-                      {search.email || "-"}
-                    </td>
+                    <td className="border-b p-3">{search.email || "-"}</td>
 
-                    <td className="border-b p-3">
-                      {search.mobile || "-"}
-                    </td>
+                    <td className="border-b p-3">{search.mobile || "-"}</td>
 
-                    <td className="border-b p-3">
-                      {search.campus || "-"}
-                    </td>
+                    <td className="border-b p-3">{search.campus || "-"}</td>
 
-                    <td className="border-b p-3">
-                      {search.course || "-"}
-                    </td>
+                    <td className="border-b p-3">{search.course || "-"}</td>
                   </tr>
                 ))}
               </tbody>

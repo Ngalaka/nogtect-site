@@ -1,30 +1,50 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 import axios from "axios";
-import React from 'react'
 
 export default function AdminLogin() {
-      const router = useRouter();
+  const router = useRouter();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  async function handleLogin(e) {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
+
+  async function handleLogin(formData) {
     setLoading(true);
     setError("");
 
     try {
-      await axios.post("/api/admin/login", {
-        email,
-       password: password,
-      });
+      const response = await axios.post(
+        "/api/admin/login",
+        {
+          email: formData.email.trim(),
+          password: formData.password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
 
-      router.replace("/admin/dashboard");
-      router.refresh();
+      if (response.data.success === true) {
+        router.replace("/admin/dashboard");
+        router.refresh();
+      } else {
+        setError(
+          response.data.message || "Login failed. Please try again."
+        );
+      }
     } catch (err) {
       setError(
         err.response?.data?.message ||
@@ -36,10 +56,9 @@ export default function AdminLogin() {
   }
 
   return (
-    <>
-         <main className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
+    <main className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
       <form
-        onSubmit={handleLogin}
+        onSubmit={handleSubmit(handleLogin)}
         className="w-full max-w-md space-y-5 rounded-xl bg-white p-8 shadow-lg"
       >
         <h1 className="text-2xl font-bold text-gray-900">
@@ -50,10 +69,11 @@ export default function AdminLogin() {
           Authorized administrators only.
         </p>
 
+        {/* Administrator email */}
         <div>
           <label
             htmlFor="email"
-            className="mb-1 block font-medium"
+            className="mb-1 block font-medium text-gray-900"
           >
             Administrator email
           </label>
@@ -62,17 +82,30 @@ export default function AdminLogin() {
             id="email"
             type="email"
             autoComplete="username"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full rounded-md border p-3 text-gray-900"
+            placeholder="Enter your administrator email"
+            aria-invalid={!!errors.email}
+            {...register("email", {
+              required: "Administrator email is required.",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Please enter a valid email address.",
+              },
+            })}
+            className="w-full rounded-md border p-3 text-gray-900 outline-none focus:border-blue-700"
           />
+
+          {errors.email && (
+            <p className="mt-1 text-sm text-red-600">
+              {errors.email.message}
+            </p>
+          )}
         </div>
 
+        {/* Administrator password */}
         <div>
           <label
             htmlFor="password"
-            className="mb-1 block font-medium"
+            className="mb-1 block font-medium text-gray-900"
           >
             Password
           </label>
@@ -81,28 +114,40 @@ export default function AdminLogin() {
             id="password"
             type="password"
             autoComplete="current-password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="w-full rounded-md border p-3 text-gray-900"
+            placeholder="Enter your password"
+            aria-invalid={!!errors.password}
+            {...register("password", {
+              required: "Password is required.",
+            })}
+            className="w-full rounded-md border p-3 text-gray-900 outline-none focus:border-blue-700"
           />
+
+          {errors.password && (
+            <p className="mt-1 text-sm text-red-600">
+              {errors.password.message}
+            </p>
+          )}
         </div>
 
+        {/* Login API error */}
         {error && (
-          <p role="alert" className="text-sm text-red-600">
+          <p
+            role="alert"
+            className="rounded-md bg-red-50 p-3 text-sm text-red-600"
+          >
             {error}
           </p>
         )}
 
+        {/* Submit button */}
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-md bg-blue-700 p-3 font-semibold text-white disabled:opacity-50"
+          className="w-full rounded-md bg-blue-700 p-3 font-semibold text-white transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {loading ? "Signing in..." : "Sign in"}
         </button>
       </form>
     </main>
-    </>
-  )
+  );
 }

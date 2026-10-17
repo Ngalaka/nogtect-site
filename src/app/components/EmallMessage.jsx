@@ -6,8 +6,9 @@ import { useRouter } from "next/navigation";
 
 
 export default function EmallMessage() {
-   const [data, setData] = useState({ emailmessage: [] });
-  const [loading, setLoading] = useState(true);
+const router = useRouter();
+const [data, setData] = useState({ emailmessage: [] });
+const [loading, setLoading] = useState(true);
 
 
 const [deletingId, setDeletingId] = useState(null);
@@ -18,20 +19,26 @@ const [success, setSuccess] = useState("");
   useEffect(() => {
     const fetchEmailmessage = async () => {
       try {
-        setLoading(true);
-        const res = await axios.get("/api/admin/email", {
-      withCredentials: true,
-    }); 
-      
+    setLoading(true);
 
-        console.log("fetched data", res.data);
-        setData(res.data);
-      } catch (error) {
-        console.error("Error fetching emailmessage:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    const response = await axios.get("/api/admin/email", {
+      withCredentials: true,
+    });
+
+    setData({
+      emailmessage: response.data.emailmessage ?? [],
+    });
+  } catch (error) {
+    if (error.response?.status === 401) {
+      router.replace("/admin/login");
+      return;
+    }
+
+    console.error("Error fetching email messages:", error);
+  } finally {
+    setLoading(false);
+  }
+};
     fetchEmailmessage();
   }, []);
 // array 
@@ -43,40 +50,37 @@ const [success, setSuccess] = useState("");
   // Delete one email message
 
 const handleDelete = async (id) => {
-  setDeletingId(id);
-  setError("");
-  setSuccess("");
+  if (!window.confirm("Are you sure you want to delete this record?")) {
+    return;
+  }
 
   try {
-    const res = await axios.delete(
-      `/api/admin/email/${id}`,
-      { withCredentials: true }
-    );
+   await axios.delete(`/api/admin/email/${id}`, {
+      withCredentials: true,
+    });
 
-    setData((previousData) => ({
-      ...previousData,
-      emailmessage: Array.isArray(previousData.emailmessage)
-        ? previousData.emailmessage.filter(
-            (message) => String(message._id) !== String(id)
-          )
-        : [],
+    // Update the interface after successful deletion.
+    setData((previous) => ({
+      ...previous,
+      emailmessage: previous.emailmessage.filter(
+        (item) => item._id !== id
+      ),
     }));
 
-    setSuccess(
-      res.data.message || "Email message deleted successfully."
-    );
+
   } catch (error) {
-    console.error(
-      "Delete error:",
-      error.response?.data || error.message
+     if (error.response?.status === 401) {
+      router.replace("/admin/login");
+      return;
+    }
+
+    console.error("Error deleting email:", error);
+    alert(
+      error.response?.data?.message ||
+      "Failed to delete the email record."
     );
 
-    setError(
-      error.response?.data?.message ||
-        "Unable to delete this email message."
-    );
-  } finally {
-    setDeletingId(null);
+    
   }
 };
 

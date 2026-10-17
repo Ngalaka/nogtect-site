@@ -4,11 +4,11 @@ import { createAdminSession } from "@/lib/admin-auth";
 
 export async function POST(req) {
   try {
-    // 1. Read the login details from Postman or the frontend
+    // 1. Read the submitted login details.
     const body = await req.json();
     const { email, password } = body;
 
-    // 2. Validate the submitted values
+    // 2. Validate the input.
     if (
       typeof email !== "string" ||
       typeof password !== "string" ||
@@ -18,76 +18,71 @@ export async function POST(req) {
       password.length > 200
     ) {
       return Response.json(
-        { message: "Invalid credentials" },
+        {
+          success: false,
+          message: "Invalid credentials",
+        },
         { status: 400 }
       );
     }
 
-    // 3. Read administrator credentials from .env.local
-  const adminEmail = process.env.ADMIN_EMAIL;
-const passwordHash = process.env.ADMIN_PASSWORD_HASH;
+    // 3. Load the administrator credentials from .env.local.
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const passwordHash = process.env.ADMIN_PASSWORD_HASH;
 
-console.log("Email loaded:", Boolean(process.env.ADMIN_EMAIL));
-console.log("Hash loaded:", Boolean(process.env.ADMIN_PASSWORD_HASH));
-console.log("Hash length:", process.env.ADMIN_PASSWORD_HASH?.length ?? 0);
-
-    // 4. Confirm the environment variables are configured
-    console.log(
-      "Admin email configured:",
-      Boolean(adminEmail)
-    );
-
-    console.log(
-      "Password hash configured:",
-      Boolean(passwordHash)
-    );
-
+    // 4. Confirm that the environment variables exist.
     if (!adminEmail || !passwordHash) {
-      console.error("Admin login environment variables are missing.");
+      console.error(
+        "Admin login environment variables are missing."
+      );
 
       return Response.json(
-        { message: "Admin login is not configured" },
+        {
+          success: false,
+          message: "Admin login is not configured",
+        },
         { status: 500 }
       );
     }
 
-    // 5. Compare the submitted email with the configured email
+    // 5. Compare the submitted email with the configured email.
     const emailMatches =
       email.trim().toLowerCase() ===
       adminEmail.trim().toLowerCase();
 
-    // 6. Compare the submitted password with the bcrypt hash
+    // 6. Compare the submitted password with its bcrypt hash.
     const passwordMatches = await bcrypt.compare(
       password,
       passwordHash
     );
 
-    // 7. Log comparison results without exposing credentials
-    console.log("Email matches:", emailMatches);
-    console.log("Password matches:", passwordMatches);
-
-    // 8. Reject incorrect credentials
+    // 7. Reject incorrect credentials.
     if (!emailMatches || !passwordMatches) {
       return Response.json(
-        { message: "Invalid email or password" },
+        {
+          success: false,
+          message: "Invalid email or password",
+        },
         { status: 401 }
       );
     }
 
-    // 9. Create the administrator session
+    // 8. Create the session only after successful validation.
     await createAdminSession();
 
-    // 10. Return a successful login response
+    // 9. Return the success response.
     return Response.json({
       success: true,
       message: "Login successful",
     });
   } catch (error) {
-    // Log server-side errors for debugging
     console.error("Admin login error:", error);
 
     return Response.json(
-      { message: "Unable to process login" },
+      {
+        success: false,
+        message: "Unable to process login",
+      },
       { status: 500 }
     );
   }
