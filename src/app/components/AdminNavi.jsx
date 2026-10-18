@@ -26,7 +26,8 @@ export default function AdminNavi() {
   const pathname = usePathname();
   return (
     <>
-      <nav className="mb-6 rounded-lg bg-slate-900 p-4 text-white">
+    
+      <nav className="w-full mb-6 rounded-lg bg-white p-4 text-white">
       <h2 className="mb-4 text-lg font-bold">
         NOGTECH Admin Panel
       </h2>

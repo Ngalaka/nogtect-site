@@ -235,6 +235,29 @@ export default function AdminDashboard() {
   }
 
   return (
+    <>
+      {/* Dashboard header */}
+      <header className="mb-8 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold md:text-3xl">
+            NOGTECH Admin Dashboard
+          </h1>
+
+          <p className="mt-2 text-sm text-gray-600">
+            Administrator: {adminEmail || "Admin"}
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="rounded-md bg-red-600 px-5 py-3 text-white hover:bg-red-700"
+        >
+          Logout
+        </button>
+      </header>
+
+
     <main className="min-h-screen bg-gray-100 p-4 text-gray-900 md:p-8">
       {/* Dashboard navigation */}
       <section className="mb-6 grid gap-4 sm:grid-cols-2">
@@ -273,27 +296,7 @@ export default function AdminDashboard() {
         </Link>
       </section>
 
-      {/* Dashboard header */}
-      <header className="mb-8 flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold md:text-3xl">
-            NOGTECH Admin Dashboard
-          </h1>
-
-          <p className="mt-2 text-sm text-gray-600">
-            Administrator: {adminEmail || "Admin"}
-          </p>
-        </div>
-
-        <button
-          type="button"
-          onClick={handleLogout}
-          className="rounded-md bg-red-600 px-5 py-3 text-white hover:bg-red-700"
-        >
-          Logout
-        </button>
-      </header>
-
+    
       {/* Dashboard summary */}
       <section className="mb-6 grid gap-4 sm:grid-cols-2">
         <div className="rounded-lg bg-white p-5 shadow">
@@ -419,5 +422,6 @@ export default function AdminDashboard() {
         )}
       </section>
     </main>
+    </>
   );
 }

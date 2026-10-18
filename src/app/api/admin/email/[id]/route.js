@@ -1,4 +1,4 @@
-import { Response } from "next/server";
+
 import mongoose from "mongoose";
 import connectToDb from "@/lib/connection";
 import Email from "@/app/models/emailModel";
@@ -23,7 +23,7 @@ export async function DELETE(req, { params }) {
     const { id } = await params;
 
     if (!mongoose.isValidObjectId(id)) {
-      return NextResponse.json(
+      return Response.json(
         {
           success: false,
           message: "Invalid email record ID.",
